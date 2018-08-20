@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/smurfs-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/smurfs-eureka/pom.xml" />
+        <option value="$PROJECT_DIR$/smurfs-common/pom.xml" />
+        <option value="$PROJECT_DIR$/smurfs-config/pom.xml" />
+        <option value="$PROJECT_DIR$/smurfs-dbservice/pom.xml" />
+        <option value="$PROJECT_DIR$/smurfs-logservice/pom.xml" />
+        <option value="$PROJECT_DIR$/smurfs-opera1service/pom.xml" />
+        <option value="$PROJECT_DIR$/smurfs-opera2service/pom.xml" />
+        <option value="$PROJECT_DIR$/smurfs-zuul/pom.xml" />
+        <option value="$PROJECT_DIR$/smurfs-core/pom.xml" />
+      </list>
+    </option>
+  </component>
+</project>
