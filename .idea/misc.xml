@@ -16,6 +16,7 @@
         <option value="$PROJECT_DIR$/smurfs-opera2service/pom.xml" />
         <option value="$PROJECT_DIR$/smurfs-zuul/pom.xml" />
         <option value="$PROJECT_DIR$/smurfs-core/pom.xml" />
+        <option value="$PROJECT_DIR$/smurfs-test/pom.xml" />
       </list>
     </option>
   </component>

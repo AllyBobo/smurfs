@@ -12,6 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/smurfs-opera1service/smurfs-opera1service.iml" filepath="$PROJECT_DIR$/smurfs-opera1service/smurfs-opera1service.iml" />
       <module fileurl="file://$PROJECT_DIR$/smurfs-opera2service/smurfs-opera2service.iml" filepath="$PROJECT_DIR$/smurfs-opera2service/smurfs-opera2service.iml" />
       <module fileurl="file://$PROJECT_DIR$/smurfs-parent/smurfs-parent.iml" filepath="$PROJECT_DIR$/smurfs-parent/smurfs-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smurfs-test/smurfs-test.iml" filepath="$PROJECT_DIR$/smurfs-test/smurfs-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/smurfs-zuul/smurfs-zuul.iml" filepath="$PROJECT_DIR$/smurfs-zuul/smurfs-zuul.iml" />
     </modules>
   </component>

@@ -10,12 +10,17 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>smurfs-zuul</artifactId>
-
+    <artifactId>smurfs-test</artifactId>
     <dependencies>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zuul</artifactId>
+            <groupId>com.iscas</groupId>
+            <artifactId>smurfs-common</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.iscas</groupId>
+            <artifactId>smurfs-core</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
 

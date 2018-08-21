@@ -15,6 +15,7 @@
         <module name="smurfs-opera1service" />
         <module name="smurfs-opera2service" />
         <module name="smurfs-parent" />
+        <module name="smurfs-test" />
         <module name="smurfs-zuul" />
       </profile>
     </annotationProcessing>
@@ -28,6 +29,7 @@
       <module name="smurfs-opera1service" target="1.8" />
       <module name="smurfs-opera2service" target="1.8" />
       <module name="smurfs-parent" target="1.8" />
+      <module name="smurfs-test" target="1.8" />
       <module name="smurfs-zuul" target="1.8" />
     </bytecodeTargetLevel>
   </component>
