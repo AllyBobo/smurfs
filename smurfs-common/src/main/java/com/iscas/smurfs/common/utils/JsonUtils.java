@@ -1,4 +1,4 @@
-package com.iscas.smurfs.common;
+package com.iscas.smurfs.common.utils;
 
 
 import com.google.gson.Gson;

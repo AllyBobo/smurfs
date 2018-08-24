@@ -6,12 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="smurfs-auth" />
         <module name="smurfs-common" />
         <module name="smurfs-config" />
         <module name="smurfs-core" />
         <module name="smurfs-dbservice" />
         <module name="smurfs-eureka" />
         <module name="smurfs-logservice" />
+        <module name="smurfs-oauth2" />
         <module name="smurfs-opera1service" />
         <module name="smurfs-opera2service" />
         <module name="smurfs-parent" />
@@ -20,12 +22,14 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="smurfs-auth" target="1.8" />
       <module name="smurfs-common" target="1.8" />
       <module name="smurfs-config" target="1.8" />
       <module name="smurfs-core" target="1.8" />
       <module name="smurfs-dbservice" target="1.8" />
       <module name="smurfs-eureka" target="1.8" />
       <module name="smurfs-logservice" target="1.8" />
+      <module name="smurfs-oauth2" target="1.8" />
       <module name="smurfs-opera1service" target="1.8" />
       <module name="smurfs-opera2service" target="1.8" />
       <module name="smurfs-parent" target="1.8" />

@@ -1,0 +1,13 @@
+server:
+  port: 9011
+spring:
+  application:
+    name: register
+eureka:
+  instance:
+    hostname: register2
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://register1:9010/eureka/

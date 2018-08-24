@@ -1,6 +1,6 @@
 package com.iscas.smurfs.opera1service.controller;
 
-import com.iscas.smurfs.common.JsonUtils;
+import com.iscas.smurfs.common.utils.JsonUtils;
 import com.iscas.smurfs.core.entity.Log;
 import com.iscas.smurfs.opera1service.remote.DbRemote;
 import com.iscas.smurfs.opera1service.remote.LogRemote;

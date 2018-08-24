@@ -1,4 +1,4 @@
-package com.iscas.smurfs.common;
+package com.iscas.smurfs.common.utils;
 
 import org.apache.http.*;
 import org.apache.http.client.HttpClient;

@@ -1,8 +1,8 @@
 package com.iscas.smurfs.test.logservice;
 
 
-import com.iscas.smurfs.common.HttpUtils;
-import com.iscas.smurfs.common.JsonUtils;
+import com.iscas.smurfs.common.utils.HttpUtils;
+import com.iscas.smurfs.common.utils.JsonUtils;
 import com.iscas.smurfs.core.entity.Log;
 
 public class LogServiceTest {
