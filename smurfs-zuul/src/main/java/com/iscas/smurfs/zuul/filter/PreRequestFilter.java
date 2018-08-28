@@ -11,7 +11,7 @@ public class PreRequestFilter extends ZuulFilter {
     private static final Logger LOGGER = LoggerFactory.getLogger(PreRequestFilter.class);
     @Override
     public String filterType() {
-        return "PRE";
+        return "pre";
     }
 
     @Override
@@ -28,7 +28,7 @@ public class PreRequestFilter extends ZuulFilter {
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
-        PreRequestFilter.LOGGER.info(String.format("send %s request to %s", request.getMethod(), request.getRequestURL().toString()));
+        PreRequestFilter.LOGGER.info(String.format(" send %s request to %s", request.getMethod(), request.getRequestURL().toString()));
         return null;
     }
 }
