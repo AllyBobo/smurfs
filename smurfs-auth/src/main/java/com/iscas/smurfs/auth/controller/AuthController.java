@@ -1,7 +1,7 @@
 package com.iscas.smurfs.auth.controller;
 
 import com.iscas.smurfs.auth.common.JWTUtils;
-import com.iscas.smurfs.auth.entity.User;
+import com.iscas.smurfs.auth.entity.UserInfo;
 import com.iscas.smurfs.auth.query.AuthQuery;
 import com.iscas.smurfs.auth.service.AuthService;
 import com.iscas.smurfs.common.entity.ResponseData;
@@ -22,7 +22,7 @@ public class AuthController {
             return ResponseData.failByParam("accessKey and secretKey not null");
         }
 
-        User user = authService.auth(query);
+        UserInfo user = authService.auth(query);
         if (user == null) {
             return ResponseData.failByParam("认证失败");
         }
@@ -37,7 +37,7 @@ public class AuthController {
             return ResponseData.failByParam("accessKey and secretKey not null");
         }
 
-        User user = authService.auth(query);
+        UserInfo user = authService.auth(query);
         if (user == null) {
             return ResponseData.failByParam("认证失败");
         }
