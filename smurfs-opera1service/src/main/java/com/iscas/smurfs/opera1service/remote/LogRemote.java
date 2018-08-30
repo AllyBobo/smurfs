@@ -1,7 +1,7 @@
 package com.iscas.smurfs.opera1service.remote;
 
 import com.iscas.smurfs.core.entity.Log;
-import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
