@@ -1,5 +1,7 @@
 package com.iscas.smurfs.auth.service;
 
+import com.iscas.smurfs.dbservice.entity.User;
+
 public interface IPermission {
-    UserInfo validate(String username,String password);
+    User validate(String username, String password);
 }

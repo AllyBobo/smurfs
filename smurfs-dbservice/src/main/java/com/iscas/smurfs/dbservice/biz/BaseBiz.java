@@ -23,15 +23,23 @@ public class BaseBiz<M extends Mapper<T>,T> {
     }
 
     public int insert(T entity){
-        mapper.insert(entity);
+        return mapper.insert(entity);
     }
 
-    int insertSelective(ProductCategory record);
+    public int insertSelective(T entity){
+     return mapper.insertSelective(entity);
+    }
 
-    ProductCategory selectByPrimaryKey(Integer categoryId);
+    public T selectByPrimaryKey(Integer categoryId){
+        return mapper.selectByPrimaryKey(categoryId);
+    }
 
-    int updateByPrimaryKeySelective(ProductCategory record);
+    public int updateByPrimaryKeySelective(T record){
+        return mapper.updateByPrimaryKeySelective(record);
+    }
 
-    int updateByPrimaryKey(ProductCategory record);
+    public int updateByPrimaryKey(T record){
+        return mapper.updateByPrimaryKey(record);
+    }
 }
 
