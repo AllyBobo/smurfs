@@ -29,5 +29,10 @@
             <artifactId>smurfs-common</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.iscas</groupId>
+            <artifactId>smurfs-dbservice</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
     </dependencies>
 </project>

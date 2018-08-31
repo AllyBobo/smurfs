@@ -16,7 +16,6 @@
         <module name="smurfs-oauth2" />
         <module name="smurfs-opera1service" />
         <module name="smurfs-opera2service" />
-        <module name="smurfs-parent" />
         <module name="smurfs-test" />
         <module name="smurfs-zuul" />
       </profile>
