@@ -1,7 +1,7 @@
 package com.iscas.smurfs.dbservice.biz;
 
+import com.iscas.smurfs.dbservice.mapper.MyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import tk.mybatis.mapper.common.Mapper;
 
 /**
  * description:
@@ -10,7 +10,7 @@ import tk.mybatis.mapper.common.Mapper;
  * @author 123
  * @date 2018/8/31
  */
-public class BaseBiz<M extends Mapper<T>,T> {
+public class BaseBiz<M extends MyMapper<T>,T> {
     @Autowired
     protected M mapper;
 
@@ -40,6 +40,10 @@ public class BaseBiz<M extends Mapper<T>,T> {
 
     public int updateByPrimaryKey(T record){
         return mapper.updateByPrimaryKey(record);
+    }
+
+    public T selectOne(T entity) {
+        return mapper.selectOne(entity);
     }
 }
 
