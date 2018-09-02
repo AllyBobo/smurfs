@@ -31,8 +31,12 @@
         </dependency>
         <dependency>
             <groupId>com.iscas</groupId>
-            <artifactId>smurfs-dbservice</artifactId>
+            <artifactId>smurfs-core</artifactId>
             <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
     </dependencies>
 </project>

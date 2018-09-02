@@ -50,11 +50,11 @@
             <artifactId>smurfs-core</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-        <!-- alibaba的druid数据库连接池 -->
+        <!-- springboot2.0 需用1.1.8以上版本 -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.0</version>
+            <version>1.1.9</version>
         </dependency>
     </dependencies>
 

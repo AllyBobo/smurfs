@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.iscas.smurfs.dbservice.mapper.ProductCategoryMapper" >
-  <resultMap id="BaseResultMap" type="com.iscas.smurfs.dbservice.entity.ProductCategory" >
+<mapper namespace="com.iscas.smurfs.core.dbservice.mapper.ProductCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.iscas.smurfs.core.dbservice.entity.ProductCategory" >
     <id column="category_id" property="categoryId" jdbcType="INTEGER" />
     <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
     <result column="category_type" property="categoryType" jdbcType="INTEGER" />
@@ -19,13 +19,13 @@
     delete from product_category
     where category_id = #{categoryId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.iscas.smurfs.dbservice.entity.ProductCategory" >
+  <insert id="insert" parameterType="com.iscas.smurfs.core.dbservice.entity.ProductCategory" >
     insert into product_category (category_id, category_name, category_type
       )
     values (#{categoryId,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, #{categoryType,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.iscas.smurfs.dbservice.entity.ProductCategory" >
+  <insert id="insertSelective" parameterType="com.iscas.smurfs.core.dbservice.entity.ProductCategory" >
     insert into product_category
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="categoryId != null" >
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.iscas.smurfs.dbservice.entity.ProductCategory" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.iscas.smurfs.core.dbservice.entity.ProductCategory" >
     update product_category
     <set >
       <if test="categoryName != null" >
@@ -62,7 +62,7 @@
     </set>
     where category_id = #{categoryId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.iscas.smurfs.dbservice.entity.ProductCategory" >
+  <update id="updateByPrimaryKey" parameterType="com.iscas.smurfs.core.dbservice.entity.ProductCategory" >
     update product_category
     set category_name = #{categoryName,jdbcType=VARCHAR},
       category_type = #{categoryType,jdbcType=INTEGER}

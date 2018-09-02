@@ -1,4 +1,4 @@
-import com.iscas.smurfs.common.utils.JsonUtils;
+import com.iscas.smurfs.core.common.utils.JsonUtils;
 import com.iscas.smurfs.core.entity.Log;
 
 public class TEST {

@@ -2,10 +2,10 @@ package com.iscas.smurfs.auth.service;
 
 import com.iscas.smurfs.auth.common.JWTUtils;
 import com.iscas.smurfs.auth.entity.JwtAuthenticationRequest;
-import com.iscas.smurfs.common.exception.UserInvalidException;
-import com.iscas.smurfs.dbservice.entity.User;
+import com.iscas.smurfs.core.common.exception.UserInvalidException;
+import com.iscas.smurfs.core.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
+import org.springframework.stereotype.Service;
 
 /**
  * description:
@@ -13,6 +13,7 @@ import org.springframework.util.StringUtils;
  * @author lee
  * @date 2018/9/2
  */
+@Service
 public class AuthServiceImpl implements IAuthService {
     @Autowired
     IPermission permission;

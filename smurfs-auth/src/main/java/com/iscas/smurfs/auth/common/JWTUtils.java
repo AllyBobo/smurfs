@@ -1,6 +1,6 @@
 package com.iscas.smurfs.auth.common;
 
-import com.iscas.smurfs.common.entity.ResponseCode;
+import com.iscas.smurfs.core.common.entity.ResponseCode;
 import io.jsonwebtoken.*;
 
 import java.security.interfaces.RSAPrivateKey;
