@@ -1,4 +1,4 @@
-package com.iscas.smurfs.core.dbservice;
+package com.iscas.smurfs.dbservice;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

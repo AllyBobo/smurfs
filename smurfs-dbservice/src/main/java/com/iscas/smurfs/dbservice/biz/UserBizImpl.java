@@ -1,8 +1,7 @@
-package com.iscas.smurfs.core.dbservice.biz;
+package com.iscas.smurfs.dbservice.biz;
 
 import com.iscas.smurfs.core.entity.User;
-import com.iscas.smurfs.core.dbservice.mapper.UserMapper;
-import org.springframework.stereotype.Repository;
+import com.iscas.smurfs.dbservice.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,4 +1,4 @@
-package com.iscas.smurfs.core.dbservice.entity;
+package com.iscas.smurfs.dbservice.entity;
 
 public class ProductCategory {
     private Integer categoryId;

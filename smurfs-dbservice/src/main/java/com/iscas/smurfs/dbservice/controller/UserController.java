@@ -1,7 +1,6 @@
-package com.iscas.smurfs.core.dbservice.controller;
+package com.iscas.smurfs.dbservice.controller;
 
-import com.iscas.smurfs.core.dbservice.biz.IUserBiz;
-import com.iscas.smurfs.core.dbservice.biz.UserBizImpl;
+import com.iscas.smurfs.dbservice.biz.IUserBiz;
 import com.iscas.smurfs.core.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

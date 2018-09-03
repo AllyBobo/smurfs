@@ -1,4 +1,4 @@
-package com.iscas.smurfs.core.dbservice.mapper;
+package com.iscas.smurfs.dbservice.mapper;
 
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;

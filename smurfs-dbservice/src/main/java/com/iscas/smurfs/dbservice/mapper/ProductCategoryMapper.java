@@ -1,6 +1,6 @@
-package com.iscas.smurfs.core.dbservice.mapper;
+package com.iscas.smurfs.dbservice.mapper;
 
-import com.iscas.smurfs.core.dbservice.entity.ProductCategory;
+import com.iscas.smurfs.dbservice.entity.ProductCategory;
 import org.springframework.stereotype.Repository;
 
 @Repository

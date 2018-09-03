@@ -1,6 +1,6 @@
-package com.iscas.smurfs.core.dbservice.biz;
+package com.iscas.smurfs.dbservice.biz;
 
-import com.iscas.smurfs.core.dbservice.mapper.MyMapper;
+import com.iscas.smurfs.dbservice.mapper.MyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

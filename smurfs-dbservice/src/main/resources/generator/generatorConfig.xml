@@ -14,7 +14,7 @@
 
         <!--添加自定义的继承接口-->
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
-            <property name="mappers" value="com.iscas.smurfs.core.dbservice.mapper.MyMapper"/>
+            <property name="mappers" value="com.iscas.smurfs.dbservice.mapper.MyMapper"/>
         </plugin>
 
         <!--数据源配置-->
@@ -25,7 +25,7 @@
         </jdbcConnection>
 
         <!--model包路径-->
-        <javaModelGenerator targetPackage="com.iscas.smurfs.dbservice.entity" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="com.iscas.smurfs.core.entity" targetProject="src/main/java"/>
         <!--mapper.xml包路径-->
         <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources"/>
         <!--mapper包路径-->

@@ -1,4 +1,4 @@
-package com.iscas.smurfs.core.dbservice.mapper;
+package com.iscas.smurfs.dbservice.mapper;
 
 
 import com.iscas.smurfs.core.entity.User;

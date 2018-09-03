@@ -1,4 +1,4 @@
-package com.iscas.smurfs.core.dbservice.biz;
+package com.iscas.smurfs.dbservice.biz;
 
 import com.iscas.smurfs.core.entity.User;
 

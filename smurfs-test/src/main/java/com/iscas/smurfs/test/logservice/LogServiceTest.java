@@ -1,4 +1,4 @@
-package com.iscas.smurfs.core.test.logservice;
+package com.iscas.smurfs.test.logservice;
 
 
 import com.iscas.smurfs.core.common.utils.HttpUtils;

@@ -1,4 +1,4 @@
-package com.iscas.smurfs.core.test.utils;
+package com.iscas.smurfs.test.utils;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
