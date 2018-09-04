@@ -15,11 +15,14 @@ public class AuthTest {
 
     public void testToken(){
         Map<String,String> map = new HashMap<>();
-        map.put("username","")
-        HttpClient.doPost()
+        map.put("username","test");
+        map.put("password","123");
+        System.out.println(HttpClient.doPost("http://localhost:8993/token",map));
+//        System.out.println(HttpClient.doGet("http://localhost:5555/auth/token"));
     }
 
     public static void main(String[] args) {
-
+        AuthTest authTest = new AuthTest();
+        authTest.testToken();
     }
 }

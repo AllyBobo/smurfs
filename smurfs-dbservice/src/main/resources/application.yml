@@ -49,3 +49,7 @@ eureka:
       enabled: true
     serviceUrl:
       defaultZone: http://localhost:8000/eureka/
+
+ribbon:
+  eureka:
+    enable: true

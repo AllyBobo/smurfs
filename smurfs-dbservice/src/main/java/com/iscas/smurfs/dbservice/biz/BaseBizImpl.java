@@ -1,6 +1,6 @@
 package com.iscas.smurfs.dbservice.biz;
 
-import com.iscas.smurfs.dbservice.mapper.MyMapper;
+import com.iscas.smurfs.dbservice.config.MyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @date 2018/8/31
  */
 
-public class BaseBizImpl<M extends MyMapper<T>,T> implements IBaseBiz{
+public class BaseBizImpl<M extends MyMapper<T>,T> implements IBaseBiz<T>{
     @Autowired
     protected M mapper;
 

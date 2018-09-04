@@ -15,7 +15,7 @@
     <properties>
         <mybatis-spring-boot>1.2.0</mybatis-spring-boot>
         <mysql-spring-boot>5.1.9</mysql-spring-boot>
-        <mapper.version>3.3.8</mapper.version>
+        <mapper.version>1.2.4</mapper.version>
     </properties>
 
     <dependencies>
@@ -35,7 +35,7 @@
         </dependency>
         <dependency>
             <groupId>tk.mybatis</groupId>
-            <artifactId>mapper</artifactId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
             <version>${mapper.version}</version>
         </dependency>
 
@@ -48,6 +48,11 @@
         <dependency>
             <groupId>com.iscas</groupId>
             <artifactId>smurfs-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.iscas</groupId>
+            <artifactId>smurfs-common</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <!-- springboot2.0 需用1.1.8以上版本 -->
@@ -84,7 +89,7 @@
                     <dependency>
                         <groupId>tk.mybatis</groupId>
                         <artifactId>mapper</artifactId>
-                        <version>${mapper.version}</version>
+                        <version>3.3.8</version>
                     </dependency>
                 </dependencies>
             </plugin>
