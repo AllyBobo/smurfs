@@ -6,7 +6,7 @@ spring:
         name: DBSERVICE
     datasource:
         name: test
-        url: jdbc:mysql://127.0.0.1:3306/smurfs
+        url: jdbc:mysql://127.0.0.1:3306/smurfs?useUnicode=true&characterEncoding=utf8
         username: root
         password: root
         # 使用druid数据源
@@ -41,9 +41,9 @@ pagehelper:
     params: count=countSql
 
 eureka:
-  instance:
-    lease-expiration-duration-in-seconds: 10
-    lease-renewal-interval-in-seconds: 30
+#  instance:
+#    lease-expiration-duration-in-seconds: 10
+#    lease-renewal-interval-in-seconds: 30
   client:
     heathcheck:
       enabled: true
