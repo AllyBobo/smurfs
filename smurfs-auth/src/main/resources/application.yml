@@ -15,6 +15,6 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8000/eureka/
 
-ribbon:
-  eureka:
-    enable: true
+#ribbon:
+#  eureka:
+#    enable: true
