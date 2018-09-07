@@ -1,6 +1,5 @@
 package com.iscas.smurfs.auth.remote;
 
-import com.iscas.smurfs.core.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component

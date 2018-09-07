@@ -1,7 +1,7 @@
 package com.iscas.smurfs.auth.service;
 
 import com.iscas.smurfs.auth.common.JWTUtils;
-import com.iscas.smurfs.auth.entity.JwtAuthenticationRequest;
+import com.iscas.smurfs.auth.entity.AuthRequest;
 import com.iscas.smurfs.common.exception.UserInvalidException;
 import com.iscas.smurfs.core.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class AuthServiceImpl implements IAuthService {
     @Autowired
     IPermission permission;
     @Override
-    public String login(JwtAuthenticationRequest authenticationRequest) throws Exception {
+    public String login(AuthRequest authenticationRequest) throws Exception {
         User user = permission.validate(authenticationRequest.getUsername(),authenticationRequest.getPassword());
         if(user!=null){
             JWTUtils jwt = JWTUtils.getInstance();

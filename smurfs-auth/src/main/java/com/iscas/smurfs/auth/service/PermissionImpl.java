@@ -1,5 +1,6 @@
 package com.iscas.smurfs.auth.service;
 
+import com.iscas.smurfs.auth.common.RSAUtils;
 import com.iscas.smurfs.auth.remote.DbRemote;
 import com.iscas.smurfs.common.utils.JsonUtils;
 import com.iscas.smurfs.core.entity.User;
@@ -30,4 +31,12 @@ public class PermissionImpl implements IPermission {
         }
         return null;
     }
+
+    @Override
+    public User getUserFromToken(String token) {
+        String pubKey = RSAUtils.private_exponent;
+
+        return null;
+    }
+
 }

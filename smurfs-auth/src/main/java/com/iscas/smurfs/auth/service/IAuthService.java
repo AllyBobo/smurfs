@@ -1,7 +1,7 @@
 package com.iscas.smurfs.auth.service;
 
-import com.iscas.smurfs.auth.entity.JwtAuthenticationRequest;
+import com.iscas.smurfs.auth.entity.AuthRequest;
 
 public interface IAuthService {
-    String login(JwtAuthenticationRequest authenticationRequest) throws Exception;
+    String login(AuthRequest authenticationRequest) throws Exception;
 }

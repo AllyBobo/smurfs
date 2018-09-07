@@ -1,12 +1,10 @@
 package com.iscas.smurfs.auth.controller;
 
 import com.iscas.smurfs.auth.service.IAuthService;
-import com.iscas.smurfs.auth.entity.JwtAuthenticationRequest;
+import com.iscas.smurfs.auth.entity.AuthRequest;
 import com.iscas.smurfs.common.entity.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @RestController
 public class AuthController {
@@ -16,7 +14,7 @@ public class AuthController {
 
     @RequestMapping(value = "token", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResponseData createAuthenticationToken(
-            @RequestBody JwtAuthenticationRequest authenticationRequest) throws Exception {
+            @RequestBody AuthRequest authenticationRequest) throws Exception {
         final String token = authService.login(authenticationRequest);
         return ResponseData.ok(token);
     }

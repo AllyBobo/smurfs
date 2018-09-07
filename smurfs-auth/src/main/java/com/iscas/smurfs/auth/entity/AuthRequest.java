@@ -2,11 +2,15 @@ package com.iscas.smurfs.auth.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
-public class UserInfo {
-    private Long id;
+@NoArgsConstructor
+public class AuthRequest implements Serializable {
     private String username;
     private String password;
+
 }

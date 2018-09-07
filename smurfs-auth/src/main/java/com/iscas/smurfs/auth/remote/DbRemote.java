@@ -1,6 +1,5 @@
 package com.iscas.smurfs.auth.remote;
 
-import com.iscas.smurfs.core.entity.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -8,4 +8,6 @@ package com.iscas.smurfs.common.constant;
  */
 public class Constant {
     public static int PW_ENCORDER_SALT = 12;
+
+    public static String TOKEN_HEADER = "Authorization";
 }

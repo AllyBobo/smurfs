@@ -25,14 +25,23 @@
         </jdbcConnection>
 
         <!--model包路径-->
-        <javaModelGenerator targetPackage="com.iscas.smurfs.core.entity" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="com.iscas.smurfs.dbservice.entity" targetProject="src/main/java"/>
         <!--mapper.xml包路径-->
         <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources"/>
         <!--mapper包路径-->
         <javaClientGenerator targetPackage="com.iscas.smurfs.dbservice.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
         <!--表配置，tableName支持%，表示全部生成-->
-        <table tableName="t_user" domainObjectName="User">
+        <!--<table tableName="t_user" domainObjectName="User">-->
+            <!--&lt;!&ndash;mysql 配置&ndash;&gt;-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+
+        <table tableName="t_permission" domainObjectName="Permission">
+            <!--mysql 配置-->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_user_permission" domainObjectName="UserPermission">
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
