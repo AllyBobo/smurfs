@@ -14,6 +14,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.tools.zip.ZipEntry;
 import org.apache.tools.zip.ZipFile;
 import org.apache.tools.zip.ZipOutputStream;
@@ -29,9 +30,8 @@ import com.google.common.collect.Lists;
  * @author lee
  * @date 2018/9/9
  */
+@Slf4j
 public class FileUtils extends org.apache.commons.io.FileUtils{
-    private static Logger logger = LoggerFactory.getLogger(FileUtils.class);
-
     /**
      * 复制单个文件，如果目标文件存在，则不覆盖
      * @param srcFileName 待复制的文件名
@@ -54,12 +54,12 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
         File srcFile = new File(srcFileName);
         // 判断源文件是否存在
         if (!srcFile.exists()) {
-            logger.debug("复制文件失败，源文件 " + srcFileName + " 不存在!");
+            log.debug("复制文件失败，源文件 " + srcFileName + " 不存在!");
             return false;
         }
         // 判断源文件是否是合法的文件
         else if (!srcFile.isFile()) {
-            logger.debug("复制文件失败，" + srcFileName + " 不是一个文件!");
+            log.debug("复制文件失败，" + srcFileName + " 不是一个文件!");
             return false;
         }
         File descFile = new File(descFileName);
@@ -67,22 +67,22 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
         if (descFile.exists()) {
             // 如果目标文件存在，并且允许覆盖
             if (coverlay) {
-                logger.debug("目标文件已存在，准备删除!");
+                log.debug("目标文件已存在，准备删除!");
                 if (!FileUtils.delFile(descFileName)) {
-                    logger.debug("删除目标文件 " + descFileName + " 失败!");
+                    log.debug("删除目标文件 " + descFileName + " 失败!");
                     return false;
                 }
             } else {
-                logger.debug("复制文件失败，目标文件 " + descFileName + " 已存在!");
+                log.debug("复制文件失败，目标文件 " + descFileName + " 已存在!");
                 return false;
             }
         } else {
             if (!descFile.getParentFile().exists()) {
                 // 如果目标文件所在的目录不存在，则创建目录
-                logger.debug("目标文件所在的目录不存在，创建目录!");
+                log.debug("目标文件所在的目录不存在，创建目录!");
                 // 创建目标文件所在的目录
                 if (!descFile.getParentFile().mkdirs()) {
-                    logger.debug("创建目标文件所在的目录失败!");
+                    log.debug("创建目标文件所在的目录失败!");
                     return false;
                 }
             }
@@ -104,11 +104,11 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
                 // 将读取的字节流写入到输出流
                 outs.write(buf, 0, readByte);
             }
-            logger.debug("复制单个文件 " + srcFileName + " 到" + descFileName
+            log.debug("复制单个文件 " + srcFileName + " 到" + descFileName
                     + "成功!");
             return true;
         } catch (Exception e) {
-            logger.debug("复制文件失败：" + e.getMessage());
+            log.debug("复制文件失败：" + e.getMessage());
             return false;
         } finally {
             // 关闭输入输出流，首先关闭输出流，然后再关闭输入流
@@ -152,12 +152,12 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
         File srcDir = new File(srcDirName);
         // 判断源目录是否存在
         if (!srcDir.exists()) {
-            logger.debug("复制目录失败，源目录 " + srcDirName + " 不存在!");
+            log.debug("复制目录失败，源目录 " + srcDirName + " 不存在!");
             return false;
         }
         // 判断源目录是否是目录
         else if (!srcDir.isDirectory()) {
-            logger.debug("复制目录失败，" + srcDirName + " 不是一个目录!");
+            log.debug("复制目录失败，" + srcDirName + " 不是一个目录!");
             return false;
         }
         // 如果目标文件夹名不以文件分隔符结尾，自动添加文件分隔符
@@ -170,20 +170,20 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
         if (descDir.exists()) {
             if (coverlay) {
                 // 允许覆盖目标目录
-                logger.debug("目标目录已存在，准备删除!");
+                log.debug("目标目录已存在，准备删除!");
                 if (!FileUtils.delFile(descDirNames)) {
-                    logger.debug("删除目录 " + descDirNames + " 失败!");
+                    log.debug("删除目录 " + descDirNames + " 失败!");
                     return false;
                 }
             } else {
-                logger.debug("目标目录复制失败，目标目录 " + descDirNames + " 已存在!");
+                log.debug("目标目录复制失败，目标目录 " + descDirNames + " 已存在!");
                 return false;
             }
         } else {
             // 创建目标目录
-            logger.debug("目标目录不存在，准备创建!");
+            log.debug("目标目录不存在，准备创建!");
             if (!descDir.mkdirs()) {
-                logger.debug("创建目标目录失败!");
+                log.debug("创建目标目录失败!");
                 return false;
             }
 
@@ -214,10 +214,10 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
         }
 
         if (!flag) {
-            logger.debug("复制目录 " + srcDirName + " 到 " + descDirName + " 失败!");
+            log.debug("复制目录 " + srcDirName + " 到 " + descDirName + " 失败!");
             return false;
         }
-        logger.debug("复制目录 " + srcDirName + " 到 " + descDirName + " 成功!");
+        log.debug("复制目录 " + srcDirName + " 到 " + descDirName + " 成功!");
         return true;
 
     }
@@ -232,7 +232,7 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
     public static boolean delFile(String fileName) {
         File file = new File(fileName);
         if (!file.exists()) {
-            logger.debug(fileName + " 文件不存在!");
+            log.debug(fileName + " 文件不存在!");
             return true;
         } else {
             if (file.isFile()) {
@@ -254,14 +254,14 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
         File file = new File(fileName);
         if (file.exists() && file.isFile()) {
             if (file.delete()) {
-                logger.debug("删除文件 " + fileName + " 成功!");
+                log.debug("删除文件 " + fileName + " 成功!");
                 return true;
             } else {
-                logger.debug("删除文件 " + fileName + " 失败!");
+                log.debug("删除文件 " + fileName + " 失败!");
                 return false;
             }
         } else {
-            logger.debug(fileName + " 文件不存在!");
+            log.debug(fileName + " 文件不存在!");
             return true;
         }
     }
@@ -280,7 +280,7 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
         }
         File dirFile = new File(dirNames);
         if (!dirFile.exists() || !dirFile.isDirectory()) {
-            logger.debug(dirNames + " 目录不存在!");
+            log.debug(dirNames + " 目录不存在!");
             return true;
         }
         boolean flag = true;
@@ -307,15 +307,15 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
         }
 
         if (!flag) {
-            logger.debug("删除目录失败!");
+            log.debug("删除目录失败!");
             return false;
         }
         // 删除当前目录
         if (dirFile.delete()) {
-            logger.debug("删除目录 " + dirName + " 成功!");
+            log.debug("删除目录 " + dirName + " 成功!");
             return true;
         } else {
-            logger.debug("删除目录 " + dirName + " 失败!");
+            log.debug("删除目录 " + dirName + " 失败!");
             return false;
         }
 
@@ -329,17 +329,17 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
     public static boolean createFile(String descFileName) {
         File file = new File(descFileName);
         if (file.exists()) {
-            logger.debug("文件 " + descFileName + " 已存在!");
+            log.debug("文件 " + descFileName + " 已存在!");
             return false;
         }
         if (descFileName.endsWith(File.separator)) {
-            logger.debug(descFileName + " 为目录，不能创建目录!");
+            log.debug(descFileName + " 为目录，不能创建目录!");
             return false;
         }
         if (!file.getParentFile().exists()) {
             // 如果文件所在的目录不存在，则创建目录
             if (!file.getParentFile().mkdirs()) {
-                logger.debug("创建文件所在的目录失败!");
+                log.debug("创建文件所在的目录失败!");
                 return false;
             }
         }
@@ -347,15 +347,15 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
         // 创建文件
         try {
             if (file.createNewFile()) {
-                logger.debug(descFileName + " 文件创建成功!");
+                log.debug(descFileName + " 文件创建成功!");
                 return true;
             } else {
-                logger.debug(descFileName + " 文件创建失败!");
+                log.debug(descFileName + " 文件创建失败!");
                 return false;
             }
         } catch (Exception e) {
             e.printStackTrace();
-            logger.debug(descFileName + " 文件创建失败!");
+            log.debug(descFileName + " 文件创建失败!");
             return false;
         }
 
@@ -373,15 +373,15 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
         }
         File descDir = new File(descDirNames);
         if (descDir.exists()) {
-            logger.debug("目录 " + descDirNames + " 已存在!");
+            log.debug("目录 " + descDirNames + " 已存在!");
             return false;
         }
         // 创建目录
         if (descDir.mkdirs()) {
-            logger.debug("目录 " + descDirNames + " 创建成功!");
+            log.debug("目录 " + descDirNames + " 创建成功!");
             return true;
         } else {
-            logger.debug("目录 " + descDirNames + " 创建失败!");
+            log.debug("目录 " + descDirNames + " 创建失败!");
             return false;
         }
 
@@ -394,9 +394,9 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
     public static void writeToFile(String fileName, String content, boolean append) {
         try {
             FileUtils.write(new File(fileName), content, "utf-8", append);
-            logger.debug("文件 " + fileName + " 写入成功!");
+            log.debug("文件 " + fileName + " 写入成功!");
         } catch (IOException e) {
-            logger.debug("文件 " + fileName + " 写入失败! " + e.getMessage());
+            log.debug("文件 " + fileName + " 写入失败! " + e.getMessage());
         }
     }
 
@@ -407,9 +407,9 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
     public static void writeToFile(String fileName, String content, String encoding, boolean append) {
         try {
             FileUtils.write(new File(fileName), content, encoding, append);
-            logger.debug("文件 " + fileName + " 写入成功!");
+            log.debug("文件 " + fileName + " 写入成功!");
         } catch (IOException e) {
-            logger.debug("文件 " + fileName + " 写入失败! " + e.getMessage());
+            log.debug("文件 " + fileName + " 写入失败! " + e.getMessage());
         }
     }
 
@@ -423,12 +423,12 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
                                 String descFileName) {
         // 判断目录是否存在
         if (srcDirName == null) {
-            logger.debug("文件压缩失败，目录 " + srcDirName + " 不存在!");
+            log.debug("文件压缩失败，目录 " + srcDirName + " 不存在!");
             return;
         }
         File fileDir = new File(srcDirName);
         if (!fileDir.exists() || !fileDir.isDirectory()) {
-            logger.debug("文件压缩失败，目录 " + srcDirName + " 不存在!");
+            log.debug("文件压缩失败，目录 " + srcDirName + " 不存在!");
             return;
         }
         String dirPath = fileDir.getAbsolutePath();
@@ -448,9 +448,9 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
                 }
             }
             zouts.close();
-            logger.debug(descFileName + " 文件压缩成功!");
+            log.debug(descFileName + " 文件压缩成功!");
         } catch (Exception e) {
-            logger.debug("文件压缩失败：" + e.getMessage());
+            log.debug("文件压缩失败：" + e.getMessage());
             e.printStackTrace();
         }
 
@@ -503,10 +503,10 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
                 is.close();
             }
             zipFile.close();
-            logger.debug("文件解压成功!");
+            log.debug("文件解压成功!");
             return true;
         } catch (Exception e) {
-            logger.debug("文件解压失败：" + e.getMessage());
+            log.debug("文件解压失败：" + e.getMessage());
             return false;
         }
     }
@@ -764,7 +764,7 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
             error = "文件已丢失或不存在！";
         }
         if (error != null){
-            logger.debug("---------------" + file + " " + error);
+            log.debug("---------------" + file + " " + error);
             return error;
         }
 
@@ -781,7 +781,7 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
 
         if (request.getHeader("Range") != null) { // 客户端请求的下载的文件块的开始字节
             response.setStatus(javax.servlet.http.HttpServletResponse.SC_PARTIAL_CONTENT);
-            logger.debug("request.getHeader(\"Range\") = " + request.getHeader("Range"));
+            log.debug("request.getHeader(\"Range\") = " + request.getHeader("Range"));
             rangeBytes = request.getHeader("Range").replaceAll("bytes=", "");
             if (rangeBytes.indexOf('-') == rangeBytes.length() - 1) {// bytes=969998336-
                 rangeSwitch = 1;
@@ -807,7 +807,7 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
         if (pastLength != 0) {
             response.setHeader("Accept-Ranges", "bytes");// 如果是第一次下,还没有断点续传,状态是默认的 200,无需显式设置;响应的格式是:HTTP/1.1 200 OK
             // 不是从最开始下载, 响应的格式是: Content-Range: bytes [文件块的开始字节]-[文件的总大小 - 1]/[文件的总大小]
-            logger.debug("---------------不是从开始进行下载！服务器即将开始断点续传...");
+            log.debug("---------------不是从开始进行下载！服务器即将开始断点续传...");
             switch (rangeSwitch) {
                 case 1: { // 针对 bytes=27000- 的请求
                     String contentRange = new StringBuffer("bytes ").append(new Long(pastLength).toString()).append("-")
@@ -826,7 +826,7 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
             }
         } else {
             // 是从开始下载
-            logger.debug("---------------是从开始进行下载！");
+            log.debug("---------------是从开始进行下载！");
         }
 
         try {
@@ -869,7 +869,7 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
                     }
                 }
                 out.flush();
-                logger.debug("---------------下载完成！");
+                log.debug("---------------下载完成！");
             } catch (IOException ie) {
                 /**
                  * 在写数据的时候， 对于 ClientAbortException 之类的异常，
@@ -879,23 +879,23 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
                  * 掉其他正在下载同一字节段的线程， 强行中止字节读出，造成服务器抛 ClientAbortException。
                  * 所以，我们忽略这种异常
                  */
-                logger.debug("提醒：向客户端传输时出现IO异常，但此异常是允许的，有可能客户端取消了下载，导致此异常，不用关心！");
+                log.debug("提醒：向客户端传输时出现IO异常，但此异常是允许的，有可能客户端取消了下载，导致此异常，不用关心！");
             }
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         } finally {
             if (out != null) {
                 try {
                     out.close();
                 } catch (IOException e) {
-                    logger.error(e.getMessage(), e);
+                    log.error(e.getMessage(), e);
                 }
             }
             if (raf != null) {
                 try {
                     raf.close();
                 } catch (IOException e) {
-                    logger.error(e.getMessage(), e);
+                    log.error(e.getMessage(), e);
                 }
             }
         }

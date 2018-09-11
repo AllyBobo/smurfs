@@ -7,9 +7,8 @@ import com.iscas.smurfs.core.entity.Permission;
 import com.iscas.smurfs.zuul.remote.DbRemote;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -19,9 +18,8 @@ import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-
+@Slf4j
 public class PreRequestFilter extends ZuulFilter {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PreRequestFilter.class);
 
     @Autowired
     DbRemote dbRemote;
@@ -51,7 +49,7 @@ public class PreRequestFilter extends ZuulFilter {
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
-        PreRequestFilter.LOGGER.info(String.format(" send %s request to %s", request.getMethod(), request.getRequestURL().toString()));
+        log.info(String.format(" send %s request to %s", request.getMethod(), request.getRequestURL().toString()));
 
         final String requestUri = request.getRequestURI().substring(zuulPrefix.length());;
         final String method = request.getMethod();
