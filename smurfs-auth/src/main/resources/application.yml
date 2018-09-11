@@ -15,6 +15,14 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8000/eureka/
 
+spring:
+  cloud:
+    config:
+      discovery:
+        serviceId: CONFIGSERVER
+        enabled: true
+  profiles:
+      active: prod
 #ribbon:
 #  eureka:
 #    enable: true

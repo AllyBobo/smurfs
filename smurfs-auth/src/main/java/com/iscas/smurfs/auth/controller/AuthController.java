@@ -4,6 +4,7 @@ import com.iscas.smurfs.auth.service.IAuthService;
 import com.iscas.smurfs.auth.entity.AuthRequest;
 import com.iscas.smurfs.common.entity.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -11,6 +12,14 @@ public class AuthController {
 
     @Autowired
     private IAuthService authService;
+
+    @Value("${foo}")
+    String foo;
+
+    @RequestMapping("/foo")
+    public String hi(){
+        return foo;
+    }
 
     @RequestMapping(value = "token", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResponseData createAuthenticationToken(
