@@ -19,6 +19,8 @@
         <option value="$PROJECT_DIR$/smurfs-test/pom.xml" />
         <option value="$PROJECT_DIR$/smurfs-oauth2/pom.xml" />
         <option value="$PROJECT_DIR$/smurfs-auth/pom.xml" />
+        <option value="$PROJECT_DIR$/smurfs-cache/pom.xml" />
+        <option value="$PROJECT_DIR$/smurfs-cert/pom.xml" />
       </list>
     </option>
   </component>
