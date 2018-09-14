@@ -4,4 +4,4 @@
 
 把auth client抽出来实现
 
-auth client也实现注解
+cache部分用spring el做key，用spring redis做客户端，是否不需要自定义注解
