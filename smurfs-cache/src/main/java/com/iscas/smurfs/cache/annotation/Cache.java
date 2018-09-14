@@ -21,5 +21,7 @@ public @interface Cache {
     public String desc() default "";
 
     public Class[] result() default Object.class;
+
+    //public Class<? extends IKeyGenerator> generator() default DefaultKeyGenerator.class;
 }
 

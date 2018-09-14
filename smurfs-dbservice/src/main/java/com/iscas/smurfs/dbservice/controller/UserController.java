@@ -1,6 +1,5 @@
 package com.iscas.smurfs.dbservice.controller;
 
-import com.iscas.smurfs.cache.annotation.Cache;
 import com.iscas.smurfs.core.entity.Permission;
 import com.iscas.smurfs.dbservice.biz.IPermissionBiz;
 import com.iscas.smurfs.dbservice.biz.IUserBiz;
@@ -32,7 +31,6 @@ public class UserController {
     @Autowired
     IPermissionBiz permissionBiz;
 
-
     @RequestMapping("user/{username}")
     @ResponseBody
     public User getUserByUsername(@PathVariable("username") String username) {
@@ -56,4 +54,5 @@ public class UserController {
     public List<Permission> getAllPermissions(){
         return  permissionBiz.getAllPermissions();
     }
+
 }

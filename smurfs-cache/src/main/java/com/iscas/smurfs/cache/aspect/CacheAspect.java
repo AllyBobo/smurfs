@@ -1,12 +1,18 @@
 package com.iscas.smurfs.cache.aspect;
 
+import com.google.gson.Gson;
 import com.iscas.smurfs.cache.annotation.Cache;
+import com.iscas.smurfs.common.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Service;
+
+import java.lang.reflect.Method;
+import java.lang.reflect.Type;
 
 /**
  * description:
@@ -24,8 +30,18 @@ public class CacheAspect {
 
     @Around("aspect()&&@annotation(anno)")
     public Object interceptor(ProceedingJoinPoint invocation, Cache anno){
+        MethodSignature signature = (MethodSignature) invocation.getSignature();
+        Method method = signature.getMethod();
+        Object result = null;
+        Class<?>[] parameterTypes = method.getParameterTypes();
+        Object[] arguments = invocation.getArgs();
+        Type returnType = method.getGenericReturnType();
         log.info(anno.key()+"############");
-        Object result = new Object();
+
+        result = JsonUtils.fromJson("{\"password\":\"kjljkj\",\"username\":\"123\"}",returnType);
+
         return result;
     }
+
+
 }

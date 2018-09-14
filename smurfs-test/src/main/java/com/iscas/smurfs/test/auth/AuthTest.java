@@ -2,6 +2,7 @@ package com.iscas.smurfs.test.auth;
 
 import com.iscas.smurfs.common.utils.JsonUtils;
 import com.iscas.smurfs.common.utils.OkHttp3Utils;
+import com.iscas.smurfs.core.entity.User;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -25,8 +26,12 @@ public class AuthTest {
     }
 
     public static void main(String[] args) {
-        AuthTest authTest = new AuthTest();
-        authTest.testToken();
+//        AuthTest authTest = new AuthTest();
+//        authTest.testToken();
 
+        User user = new User();
+        user.setUsername("123");
+        user.setPassword("kjljkj");
+        System.out.println(JsonUtils.toJson(user));
     }
 }

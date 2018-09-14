@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserBizImpl extends BaseBizImpl<UserMapper, User> implements IUserBiz{
 
 
-    @Cache(key="getUserByUsername")
+    @Cache(key="username")
     public User getUserByUsername(String username){
         User user = new User();
         user.setUsername(username);
