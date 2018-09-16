@@ -1,6 +1,7 @@
 package com.iscas.smurfs.zuul.filter;
 
-import com.google.gson.reflect.TypeToken;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.iscas.smurfs.common.constant.Constant;
 import com.iscas.smurfs.common.utils.JsonUtils;
 import com.iscas.smurfs.core.entity.Permission;
@@ -58,7 +59,7 @@ public class PreRequestFilter extends ZuulFilter {
             return null;
         }
 
-        List<Permission> permissions = JsonUtils.fromJson(dbRemote.getAllPermissions(),new TypeToken<List<Permission>>(){}.getType());
+        List<Permission> permissions = JSON.parseObject(dbRemote.getAllPermissions(),new TypeReference<List<Permission>>(){});
         List<Permission> result = permissions.parallelStream().filter(new Predicate<Permission>() {
             @Override
             public boolean test(Permission permission) {
@@ -80,7 +81,7 @@ public class PreRequestFilter extends ZuulFilter {
             authToken = request.getParameter(Constant.TOKEN_HEADER);
         }
         ctx.addZuulRequestHeader(Constant.TOKEN_HEADER,authToken);
-
+//TODO: 从token中计算出来user
 
         return null;
     }
