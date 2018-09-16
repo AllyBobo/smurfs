@@ -1,9 +1,10 @@
 package com.iscas.smurfs.dbservice.biz;
 
-import com.iscas.smurfs.cache.annotation.Cache;
 import com.iscas.smurfs.common.constant.Constant;
 import com.iscas.smurfs.core.entity.User;
 import com.iscas.smurfs.dbservice.mapper.UserMapper;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,11 +19,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
+//@CacheConfig(cacheNames = "user",keyGenerator = "cacheKeyGenerator")
+@Cacheable(value = "user",keyGenerator = "cacheKeyGenerator")
 public class UserBizImpl extends BaseBizImpl<UserMapper, User> implements IUserBiz{
 
 
-    @Cache(key="username")
+    //@Cacheable(value = "user")
+    @Override
     public User getUserByUsername(String username){
+        System.out.println("缓存击穿了哦");
         User user = new User();
         user.setUsername(username);
         return super.mapper.selectOne(user);
