@@ -1,4 +1,4 @@
-package com.iscas.smurfs.cache.annotation;
+package com.iscas.smurfs.cache.config;
 
 import com.iscas.smurfs.cache.generator.CacheKeyGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
