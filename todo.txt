@@ -8,7 +8,7 @@ cache部分用spring el做key，用spring redis做客户端，是否不需要自
 
 contiperf轻量级性能测试工具
 
-
+DBAuthClientService中有自动注册服务，这样做的目的？
 
 
 springcloud集中配置问题，mysql和redis修改为集中配置
