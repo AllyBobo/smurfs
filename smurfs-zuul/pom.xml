@@ -37,6 +37,11 @@
             <artifactId>smurfs-common</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.iscas</groupId>
+            <artifactId>smurfs-cert</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
     </dependencies>
 
 
