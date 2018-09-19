@@ -1,4 +1,4 @@
-package com.iscas.smurfs.auth.common;
+package com.iscas.smurfs.common.utils;
 
 import javax.crypto.Cipher;
 import java.math.BigInteger;

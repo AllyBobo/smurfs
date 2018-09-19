@@ -1,10 +1,14 @@
-package com.iscas.smurfs.auth.common;
+package com.iscas.smurfs.common.utils;
 /**
  * 引进的包都是Java自带的jar包
  * 秘钥相关包
  * base64 编解码
  * 这里只用到了编码
  */
+
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
+
 import java.security.Key;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -12,10 +16,6 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.iscas.smurfs.common.utils.FileUtils;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
 public class CreateRSAKey {
 

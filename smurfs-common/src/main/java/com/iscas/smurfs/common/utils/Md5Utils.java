@@ -1,9 +1,10 @@
-package com.iscas.smurfs.auth.common;
+package com.iscas.smurfs.common.utils;
 
-import java.util.Random;
 import org.apache.commons.codec.binary.Hex;
-import java.security.NoSuchAlgorithmException;
+
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 
 /**
  * description:
