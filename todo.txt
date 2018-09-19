@@ -13,6 +13,8 @@ DBAuthClientService中有自动注册服务，这样做的目的？
 ---先实现生成jwt token的算法
 ---自定义拦截器
 
+---研究DiscoveryClient ，确定euraka是否适合做注册中心
+
 
 springcloud集中配置问题，mysql和redis修改为集中配置
 

@@ -1,6 +1,8 @@
 package com.iscas.smurfs.cert.interceptor;
 
 
+import com.iscas.smurfs.cert.annotation.ProtectedSystem;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,6 +19,11 @@ public class SystemCertInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        if (handlerMethod.getBeanType().getAnnotation(ProtectedSystem.class)==null
+                && handlerMethod.getMethodAnnotation(ProtectedSystem.class)==null){
+            return true;
+        }
         return true;
     }
 
