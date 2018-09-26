@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iscas.smurfs.dbservice.mapper.UsersMapper">
+  <resultMap id="BaseResultMap" type="com.iscas.smurfs.dbservice.entity.Users">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="gender" jdbcType="CHAR" property="gender" />
+    <result column="jiguan" jdbcType="VARCHAR" property="jiguan" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="rank" jdbcType="VARCHAR" property="rank" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="fly_hour" jdbcType="BIGINT" property="flyHour" />
+    <result column="army_age" jdbcType="INTEGER" property="armyAge" />
+    <result column="group_id" jdbcType="VARCHAR" property="groupId" />
+  </resultMap>
+</mapper>

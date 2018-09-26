@@ -1,5 +1,7 @@
 package com.iscas.smurfs.dbservice.biz;
 
+import java.util.List;
+
 public interface IBaseBiz<T> {
     public int deleteByPrimaryKey(Integer id);
 
@@ -13,4 +15,6 @@ public interface IBaseBiz<T> {
     public int updateByPrimaryKey(T record);
 
     public T selectOne(T entity);
+
+    public List<T> selectAll();
 }

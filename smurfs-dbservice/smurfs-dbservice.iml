@@ -86,7 +86,7 @@
     <orderEntry type="module" module-name="smurfs-core" />
     <orderEntry type="library" name="Maven: javax.persistence:persistence-api:1.0.2" level="project" />
     <orderEntry type="module" module-name="smurfs-common" />
-    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.47" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.32" level="project" />
     <orderEntry type="library" name="Maven: io.jsonwebtoken:jjwt:0.7.0" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.11" level="project" />
     <orderEntry type="library" name="Maven: com.squareup.okhttp3:okhttp:3.8.1" level="project" />

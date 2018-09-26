@@ -19,7 +19,7 @@
 
         <!--数据源配置-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/smurfs?useUnicode=true&amp;characterEncoding=UTF8"
+                        connectionURL="jdbc:mysql://localhost:3306/wq?useUnicode=true&amp;characterEncoding=UTF8"
                         userId="root"
                         password="root">
         </jdbcConnection>
@@ -32,16 +32,31 @@
         <javaClientGenerator targetPackage="com.iscas.smurfs.dbservice.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
         <!--表配置，tableName支持%，表示全部生成-->
-        <!--<table tableName="t_user" domainObjectName="User">-->
-            <!--&lt;!&ndash;mysql 配置&ndash;&gt;-->
-            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
-        <!--</table>-->
-
-        <table tableName="t_permission" domainObjectName="Permission">
+        <table tableName="dataaircraft" domainObjectName="Dataaircraft">
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
-        <table tableName="t_user_permission" domainObjectName="UserPermission">
+        <table tableName="datasatellite" domainObjectName="Datasatellite">
+            <!--mysql 配置-->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_base" domainObjectName="Base">
+            <!--mysql 配置-->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_facility" domainObjectName="Facility">
+            <!--mysql 配置-->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_fund" domainObjectName="Fund">
+            <!--mysql 配置-->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_group" domainObjectName="Group">
+            <!--mysql 配置-->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_user" domainObjectName="Users">
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>

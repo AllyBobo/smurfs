@@ -3,6 +3,8 @@ package com.iscas.smurfs.dbservice.biz;
 import com.iscas.smurfs.dbservice.config.MyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 /**
  * description:
  * BaseBizImpl
@@ -46,5 +48,7 @@ public class BaseBizImpl<M extends MyMapper<T>,T> implements IBaseBiz<T>{
     public T selectOne(T entity) {
         return mapper.selectOne(entity);
     }
+
+    public List<T> selectAll(){return  mapper.selectAll();}
 }
 

@@ -18,7 +18,7 @@
 //public class ProductCategoryMapperTest {
 //
 //    @Autowired
-//    private ProductCategoryMapper productCategoryMapper;
+//    private UsersMapper usersMapper;
 //    @Test
 //    public void insertByMap() {
 //        Map<String, Object> map = new HashMap();
