@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface DbRemote {
 
     @RequestMapping(value = "db/checkUserAndPermission/{userid}/{permissionid}")
-    public String checkUserAndPermission(@RequestParam(value = "userid") Integer userid,@RequestParam(value = "permissionid") Long permissionid);
+    public Boolean checkUserAndPermission(@RequestParam(value = "userid") Integer userid,@RequestParam(value = "permissionid") Long permissionid);
 
     @RequestMapping(value = "db/checkUrlPermission/{url}/{method}")
     public String checkUrlPermission(@RequestParam(value = "url") String url,@RequestParam(value = "method") String method);

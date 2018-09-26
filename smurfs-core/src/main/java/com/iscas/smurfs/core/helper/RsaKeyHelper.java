@@ -148,6 +148,17 @@ public class RsaKeyHelper {
         map.put("pri", privateKeyBytes);
         return map;
     }
+    public static Map<String, byte[]> generateKey() throws IOException, NoSuchAlgorithmException {
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        keyPairGenerator.initialize(1024);
+        KeyPair keyPair = keyPairGenerator.genKeyPair();
+        byte[] publicKeyBytes = keyPair.getPublic().getEncoded();
+        byte[] privateKeyBytes = keyPair.getPrivate().getEncoded();
+        Map<String, byte[]> map = new HashMap<String, byte[]>();
+        map.put("pub", publicKeyBytes);
+        map.put("pri", privateKeyBytes);
+        return map;
+    }
 
     public static String toHexString(byte[] b) {
         return (new BASE64Encoder()).encodeBuffer(b);

@@ -2,11 +2,13 @@ package com.iscas.smurfs.zuul.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.iscas.smurfs.cert.jwt.UserAuthConfig;
-import com.iscas.smurfs.common.utils.JsonUtils;
+
+import com.iscas.smurfs.cert.jwt.UserAuthUtil;
+import com.iscas.smurfs.common.entity.ResponseCode;
 import com.iscas.smurfs.core.constant.Constant;
 import com.iscas.smurfs.core.entity.JWTInfo;
 import com.iscas.smurfs.core.entity.Permission;
+import com.iscas.smurfs.core.entity.TokenForbiddenResponse;
 import com.iscas.smurfs.core.helper.JWTHelper;
 import com.iscas.smurfs.zuul.remote.DbRemote;
 import com.netflix.zuul.ZuulFilter;
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
@@ -28,7 +31,7 @@ public class PreRequestFilter extends ZuulFilter {
     @Autowired
     DbRemote dbRemote;
     @Autowired
-    UserAuthConfig userAuthConfig;
+    UserAuthUtil userAuthUtil;
 
     @Value("${zuul.prefix}")
     private String zuulPrefix;
@@ -80,15 +83,36 @@ public class PreRequestFilter extends ZuulFilter {
         if (result==null || result.isEmpty()){
             return null;
         }
+        JWTInfo jwtInfo = null;
+        try{
+            jwtInfo = getJwtInfo(ctx, request);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        Boolean isPermission = false;
 
+        for(Permission permission : permissions){
+            isPermission = dbRemote.checkUserAndPermission(jwtInfo.getUserId(),permission.getId());
+            if (isPermission.equals(true)) break;
+        }
+        //没有授权
+        if(!isPermission){
+            setFailedRequest(JSON.toJSONString(new TokenForbiddenResponse("Token Forbidden!")),ResponseCode.SUCCESS_CODE.getCode());
+        }else {
+            ctx.addZuulRequestHeader("userId", jwtInfo.getUserId().toString());
+            ctx.addZuulRequestHeader("userName", URLEncoder.encode(jwtInfo.getName()));
+        }
+        return null;
+    }
+
+    private JWTInfo getJwtInfo(RequestContext ctx, HttpServletRequest request) throws Exception {
         String authToken = request.getHeader(Constant.TOKEN_HEADER);
         if (StringUtils.isBlank(authToken)) {
             authToken = request.getParameter(Constant.TOKEN_HEADER);
         }
         ctx.addZuulRequestHeader(Constant.TOKEN_HEADER,authToken);
-//TODO: 从token中计算出来user
-        JWTInfo jwtInfo = JWTHelper.getInfoFromToken(authToken,)
-        return null;
+        // 从token中计算出来user
+        return userAuthUtil.getInfoFromToken(authToken);
     }
 
     private boolean isStartWith(String requestUri) {
@@ -99,5 +123,15 @@ public class PreRequestFilter extends ZuulFilter {
             }
         }
         return flag;
+    }
+
+    private void setFailedRequest(String body, int code) {
+        log.debug("Reporting error ({}): {}", code, body);
+        RequestContext ctx = RequestContext.getCurrentContext();
+        ctx.setResponseStatusCode(code);
+        if (ctx.getResponseBody() == null) {
+            ctx.setResponseBody(body);
+            ctx.setSendZuulResponse(false);
+        }
     }
 }

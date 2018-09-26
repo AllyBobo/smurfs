@@ -1,6 +1,6 @@
 //package com.iscas.smurfs.cert.runner;
 //
-//import com.iscas.smurfs.cert.jwt.UserAuthConfig;
+//import com.iscas.smurfs.cert.jwt.UserAuthUtil;
 //import com.iscas.smurfs.cert.remote.ServiceAuthFeign;
 //import com.iscas.smurfs.common.entity.ResponseData;
 //import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,7 @@
 //public class AuthClientRunner implements CommandLineRunner {
 //
 //    @Autowired
-//    private UserAuthConfig userAuthConfig;
+//    private UserAuthUtil userAuthConfig;
 //    @Autowired
 //    private ServiceAuthFeign serviceAuthFeign;
 //

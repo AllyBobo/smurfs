@@ -33,11 +33,11 @@ public class TestRedis {
 //        myBean.getTemplate().opsForValue().set("test:set","testValue1");
         System.out.println(stringRedisTemplate.opsForValue().get("test:set"));
 
-//        User user = new User(1,"username");
-//        redisCacheTemplate.opsForValue().set("user",user);
-//
-//        User getUser = (User) redisCacheTemplate.opsForValue().get("user");
-//        System.out.println(getUser.getUserName());
+        User user = new User(1,"username");
+        redisCacheTemplate.opsForValue().set("user",user);
+
+        User getUser = (User) redisCacheTemplate.opsForValue().get("user");
+        System.out.println(getUser.getUserName());
     }
 
 }

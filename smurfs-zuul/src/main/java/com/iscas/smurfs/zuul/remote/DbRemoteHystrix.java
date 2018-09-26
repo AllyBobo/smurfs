@@ -8,8 +8,8 @@ package com.iscas.smurfs.zuul.remote;
  */
 public class DbRemoteHystrix implements DbRemote{
     @Override
-    public String checkUserAndPermission(Integer userid, Long permissionid) {
-        return "checkUserAndPermission  " +userid+", this messge send failed ";
+    public Boolean checkUserAndPermission(Integer userid, Long permissionid) {
+        return false;
     }
 
     @Override

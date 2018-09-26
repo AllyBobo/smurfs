@@ -1,5 +1,6 @@
 package com.iscas.smurfs.test.auth;
 
+import com.iscas.smurfs.common.entity.ResponseData;
 import com.iscas.smurfs.common.utils.JsonUtils;
 import com.iscas.smurfs.common.utils.OkHttp3Utils;
 import com.iscas.smurfs.core.entity.User;
@@ -22,7 +23,11 @@ public class AuthTest {
     public void testToken(){
         String path = "http://localhost:5555/auth/token";
         JwtAuthenticationRequest jwtAuthenticationRequest = new JwtAuthenticationRequest("test","123");
-        System.out.println(OkHttp3Utils.httpPost(path,JsonUtils.toJson(jwtAuthenticationRequest)));
+        String token = OkHttp3Utils.httpPost(path,JsonUtils.toJson(jwtAuthenticationRequest));
+
+        String path1 = "http://localhost:5555/foo";
+        System.out.println(OkHttp3Utils.httpGet(path1,token));
+
     }
 
     public static void main(String[] args) {

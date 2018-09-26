@@ -12,6 +12,7 @@ import sun.misc.BASE64Encoder;
 import java.security.Key;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.security.SecureRandom;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.HashMap;
@@ -58,10 +59,11 @@ public class CreateRSAKey {
     }
 
     //map对象中存放公私钥
-    public static Map<String, Object> initKey() throws Exception {
+    public static Map<String, Object> initKey(String password) throws Exception {
         //获得对象 KeyPairGenerator 参数 RSA 1024个字节
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(KEY_ALGORITHM);
-        keyPairGen.initialize(1024);
+        SecureRandom secureRandom = new SecureRandom(password.getBytes());
+        keyPairGen.initialize(1024,secureRandom);
         //通过对象 KeyPairGenerator 获取对象KeyPair
         KeyPair keyPair = keyPairGen.generateKeyPair();
 
@@ -78,12 +80,13 @@ public class CreateRSAKey {
     public static void main(String[] args) {
         Map<String, Object> keyMap;
         try {
-            keyMap = initKey();
+            String password = "123456";
+            keyMap = initKey(password);
             String publicKey = getPublicKey(keyMap);
-            FileUtils.writeToFile("pubKey.txt",publicKey,false);
+            //FileUtils.writeToFile("pubKey.txt",publicKey,false);
             System.out.println(publicKey);
             String privateKey = getPrivateKey(keyMap);
-            FileUtils.writeToFile("priKey.txt",privateKey,false);
+            //FileUtils.writeToFile("priKey.txt",privateKey,false);
             System.out.println(privateKey);
         } catch (Exception e) {
             e.printStackTrace();

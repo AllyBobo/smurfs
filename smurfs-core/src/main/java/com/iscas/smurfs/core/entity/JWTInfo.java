@@ -15,6 +15,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class JWTInfo {
     private String username;
-    private String userId;
+    private Integer userId;
     private String name;
 }

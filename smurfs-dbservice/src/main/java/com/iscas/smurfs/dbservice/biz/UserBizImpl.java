@@ -1,6 +1,6 @@
 package com.iscas.smurfs.dbservice.biz;
 
-import com.iscas.smurfs.common.constant.Constant;
+import com.iscas.smurfs.core.constant.Constant;
 import com.iscas.smurfs.core.entity.User;
 import com.iscas.smurfs.dbservice.mapper.UserMapper;
 import org.springframework.cache.annotation.CacheConfig;

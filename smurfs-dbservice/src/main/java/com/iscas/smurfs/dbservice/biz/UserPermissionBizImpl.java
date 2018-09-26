@@ -20,6 +20,6 @@ public class UserPermissionBizImpl extends BaseBizImpl<UserPermissionMapper,User
         UserPermission userPermission = new UserPermission();
         userPermission.setPermissionid(permissionid);
         userPermission.setUserid(userid);
-        return super.mapper.select(userPermission).isEmpty();
+        return !super.mapper.select(userPermission).isEmpty();
     }
 }

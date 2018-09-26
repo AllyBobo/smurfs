@@ -12,5 +12,4 @@ import java.io.Serializable;
 public class AuthRequest implements Serializable {
     private String username;
     private String password;
-
 }

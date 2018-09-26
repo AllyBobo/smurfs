@@ -31,12 +31,4 @@ public class PermissionImpl implements IPermission {
         }
         return null;
     }
-
-    @Override
-    public User getUserFromToken(String token,String pubKeyPath) {
-        String pubKey = RSAUtils.private_exponent;
-
-        return null;
-    }
-
 }

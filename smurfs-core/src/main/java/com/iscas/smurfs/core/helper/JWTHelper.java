@@ -37,6 +37,6 @@ public class JWTHelper {
     public static JWTInfo getInfoFromToken(String token, byte[] pubKey) throws Exception {
         Jws<Claims> claimsJws = parserToken(token, pubKey);
         Claims body = claimsJws.getBody();
-        return new JWTInfo(body.getSubject(), StringUtils.getObjectValue(body.get(Constant.JWT_KEY_USER_ID)), StringUtils.getObjectValue(body.get(Constant.JWT_KEY_NAME)));
+        return new JWTInfo(body.getSubject(), Integer.parseInt(StringUtils.getObjectValue(body.get(Constant.JWT_KEY_USER_ID))), StringUtils.getObjectValue(body.get(Constant.JWT_KEY_NAME)));
     }
 }

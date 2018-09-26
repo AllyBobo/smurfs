@@ -1,4 +1,6 @@
-package com.iscas.smurfs.common.exception;
+package com.iscas.smurfs.core.exception;
+
+import com.iscas.smurfs.common.exception.BaseException;
 
 /**
  * description:

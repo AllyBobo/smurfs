@@ -1,6 +1,6 @@
 package com.iscas.smurfs.cert.config;
 
-import com.iscas.smurfs.cert.jwt.UserAuthConfig;
+import com.iscas.smurfs.cert.jwt.UserAuthUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,8 +16,8 @@ import org.springframework.context.annotation.Configuration;
 public class AutoConfiguration {
 
     @Bean
-    UserAuthConfig getUserAuthConfig(){
-        return new UserAuthConfig();
+    UserAuthUtil getUserAuthConfig(){
+        return new UserAuthUtil();
     }
 
 }

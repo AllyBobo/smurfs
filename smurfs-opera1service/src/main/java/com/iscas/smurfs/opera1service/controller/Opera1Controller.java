@@ -1,5 +1,6 @@
 package com.iscas.smurfs.opera1service.controller;
 
+import com.iscas.smurfs.common.entity.ResponseData;
 import com.iscas.smurfs.common.utils.JsonUtils;
 import com.iscas.smurfs.core.entity.Log;
 import com.iscas.smurfs.opera1service.remote.DbRemote;
@@ -30,4 +31,12 @@ public class Opera1Controller {
         return logRemote.log(log);
     }
 
+    @RequestMapping("foo")
+    @ResponseBody
+    public ResponseData foo() {
+        Log log = new Log();
+        log.setLogType("warn");
+        log.setLogTitle("test test");
+        return ResponseData.ok("foo foo");
+    }
 }

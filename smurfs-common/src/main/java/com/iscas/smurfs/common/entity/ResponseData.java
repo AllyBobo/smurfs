@@ -5,10 +5,10 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ResponseData {
+public class ResponseData<T> {
     private int code = 200;
     private String message = "";
-    private Object data;
+    private T data;
 
     public static ResponseData ok(Object data) {
         return new ResponseData(data);
@@ -23,14 +23,14 @@ public class ResponseData {
     }
 
     public static ResponseData fail(String message, int code) {
-        return new ResponseData(message, code);
+        return new ResponseData(code,message);
     }
 
     public static ResponseData failByParam(String message) {
-        return new ResponseData(message, ResponseCode.PARAM_ERROR_CODE.getCode());
+        return new ResponseData( ResponseCode.PARAM_ERROR_CODE.getCode(),message);
     }
 
-    public ResponseData(Object data) {
+    public ResponseData(T data) {
         super();
         this.data = data;
     }
@@ -39,7 +39,7 @@ public class ResponseData {
         super();
         this.message = message;
     }
-    public ResponseData(String message, int code) {
+    public ResponseData(int code,String message) {
         super();
         this.message = message;
         this.code = code;

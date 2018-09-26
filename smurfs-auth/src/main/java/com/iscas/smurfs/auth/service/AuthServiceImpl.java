@@ -2,9 +2,9 @@ package com.iscas.smurfs.auth.service;
 
 
 import com.iscas.smurfs.auth.entity.AuthRequest;
-import com.iscas.smurfs.common.exception.UserInvalidException;
 import com.iscas.smurfs.common.utils.JWTUtils;
 import com.iscas.smurfs.core.entity.User;
+import com.iscas.smurfs.core.exception.UserInvalidException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
