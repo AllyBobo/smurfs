@@ -385,5 +385,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils{
         result.append(val.substring(1));
         return result.toString();
     }
-
+    public static String getObjectValue(Object obj){
+        return obj==null?"":obj.toString();
+    }
 }

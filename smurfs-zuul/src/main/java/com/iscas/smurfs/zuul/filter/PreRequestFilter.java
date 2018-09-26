@@ -2,9 +2,12 @@ package com.iscas.smurfs.zuul.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.iscas.smurfs.common.constant.Constant;
+import com.iscas.smurfs.cert.jwt.UserAuthConfig;
 import com.iscas.smurfs.common.utils.JsonUtils;
+import com.iscas.smurfs.core.constant.Constant;
+import com.iscas.smurfs.core.entity.JWTInfo;
 import com.iscas.smurfs.core.entity.Permission;
+import com.iscas.smurfs.core.helper.JWTHelper;
 import com.iscas.smurfs.zuul.remote.DbRemote;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -24,6 +27,8 @@ public class PreRequestFilter extends ZuulFilter {
 
     @Autowired
     DbRemote dbRemote;
+    @Autowired
+    UserAuthConfig userAuthConfig;
 
     @Value("${zuul.prefix}")
     private String zuulPrefix;
@@ -82,7 +87,7 @@ public class PreRequestFilter extends ZuulFilter {
         }
         ctx.addZuulRequestHeader(Constant.TOKEN_HEADER,authToken);
 //TODO: 从token中计算出来user
-
+        JWTInfo jwtInfo = JWTHelper.getInfoFromToken(authToken,)
         return null;
     }
 
