@@ -17,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URLEncoder;
@@ -26,11 +28,14 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Slf4j
+@Configuration
 public class PreRequestFilter extends ZuulFilter {
 
     @Autowired
+    @Lazy
     DbRemote dbRemote;
     @Autowired
+    @Lazy
     UserAuthUtil userAuthUtil;
 
     @Value("${zuul.prefix}")

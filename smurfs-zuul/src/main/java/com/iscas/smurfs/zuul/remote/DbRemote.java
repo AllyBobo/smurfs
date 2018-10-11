@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name="DBSERVICE",fallback = DbRemoteHystrix.class)
-@Repository
 public interface DbRemote {
 
     @RequestMapping(value = "db/checkUserAndPermission/{userid}/{permissionid}")

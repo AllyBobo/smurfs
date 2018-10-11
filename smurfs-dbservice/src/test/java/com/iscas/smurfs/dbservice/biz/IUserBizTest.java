@@ -22,5 +22,4 @@ public class IUserBizTest {
 
         Assert.notNull(userBiz.insert(user),"insert succ");
     }
-
 }
