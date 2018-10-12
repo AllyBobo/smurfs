@@ -1,14 +1,22 @@
 package com.iscas.smurfs.zuul;
 
+//import com.iscas.smurfs.zuul.filter.PreRequestFilter;
+import com.iscas.smurfs.cert.EnableSmurfsCert;
 import com.iscas.smurfs.zuul.filter.PreRequestFilter;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.SpringCloudApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
+@SpringBootApplication
 @EnableZuulProxy
-@SpringCloudApplication
+@EnableEurekaClient
+@EnableDiscoveryClient
+@EnableSmurfsCert
 @EnableFeignClients({"com.iscas.smurfs.zuul.remote"})
 public class ZuulApplication {
     public static void main(String[] args) {

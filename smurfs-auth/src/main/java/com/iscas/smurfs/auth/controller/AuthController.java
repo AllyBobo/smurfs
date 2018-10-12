@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
 public class AuthController {
 
     @Autowired
@@ -17,13 +16,13 @@ public class AuthController {
     @Autowired
     private KeyConfiguration keyConfiguration;
 
-    @Value("${foo}")
-    String foo;
-
-    @RequestMapping("/foo")
-    public String hi(){
-        return foo;
-    }
+//    @Value("${foo}")
+//    String foo;
+//
+//    @RequestMapping("/foo")
+//    public String hi(){
+//        return foo;
+//    }
 
     @RequestMapping(value = "/token", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResponseData createAuthenticationToken(

@@ -24,19 +24,22 @@ public class AuthTest {
         String path = "http://localhost:5555/auth/token";
         JwtAuthenticationRequest jwtAuthenticationRequest = new JwtAuthenticationRequest("test","123");
         String token = OkHttp3Utils.httpPost(path,JsonUtils.toJson(jwtAuthenticationRequest));
+        System.out.println(token);
+        String pubkey = OkHttp3Utils.httpGet("http://localhost:5555/auth/userPubKey",token);
+        System.out.println(pubkey);
 
-        String path1 = "http://localhost:5555/foo";
-        System.out.println(OkHttp3Utils.httpGet(path1,token));
+//        String path1 = "http://localhost:5555/foo";
+//        System.out.println(OkHttp3Utils.httpGet(path1,token));
 
     }
 
     public static void main(String[] args) {
-//        AuthTest authTest = new AuthTest();
-//        authTest.testToken();
+        AuthTest authTest = new AuthTest();
+        authTest.testToken();
 
-        User user = new User();
-        user.setUsername("123");
-        user.setPassword("kjljkj");
-        System.out.println(JsonUtils.toJson(user));
+//        User user = new User();
+//        user.setUsername("123");
+//        user.setPassword("kjljkj");
+//        System.out.println(JsonUtils.toJson(user));
     }
 }

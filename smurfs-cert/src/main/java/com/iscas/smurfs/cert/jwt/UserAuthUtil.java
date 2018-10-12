@@ -9,6 +9,7 @@ import io.jsonwebtoken.SignatureException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author lee
  * @date 2018/9/17
  */
-@Configuration
+@Service
 public class UserAuthUtil {
     @Autowired
     private UserAuthConfig userAuthConfig;

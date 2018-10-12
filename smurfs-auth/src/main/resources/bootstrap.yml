@@ -1,12 +1,12 @@
 spring:
-  cloud:
-    config:
-      discovery:
-        serviceId: CONFIGSERVER
-        enabled: true
-      profile: prod
-      name: AUTHSERVICE
-      label: master
+#  cloud:
+#    config:
+#      discovery:
+#        serviceId: CONFIGSERVER
+#        enabled: true
+#      profile: prod
+#      name: AUTHSERVICE
+#      label: master
   cache:
     type: redis
 eureka:

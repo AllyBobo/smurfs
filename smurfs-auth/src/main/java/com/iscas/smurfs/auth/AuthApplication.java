@@ -12,6 +12,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableSmurfsCache
 @EnableEurekaClient
 @EnableFeignClients
+@EnableDiscoveryClient
 public class AuthApplication {
 
     public static void main(String[] args) {

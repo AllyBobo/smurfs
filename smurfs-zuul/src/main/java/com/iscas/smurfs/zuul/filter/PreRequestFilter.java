@@ -28,7 +28,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Configuration
 public class PreRequestFilter extends ZuulFilter {
 
     @Autowired
@@ -38,8 +37,8 @@ public class PreRequestFilter extends ZuulFilter {
     @Lazy
     UserAuthUtil userAuthUtil;
 
-    @Value("${zuul.prefix}")
-    private String zuulPrefix;
+//    @Value("${zuul.prefix}")
+//    private String zuulPrefix;
 
     @Value("${gate.ignore.startWith}")
     private String startWith;
@@ -64,8 +63,8 @@ public class PreRequestFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
         log.info(String.format(" send %s request to %s", request.getMethod(), request.getRequestURL().toString()));
-
-        final String requestUri = request.getRequestURI().substring(zuulPrefix.length());;
+        final String requestUri = request.getRequestURI();
+//        final String requestUri = request.getRequestURI().substring(zuulPrefix.length());;
         final String method = request.getMethod();
         //白名单
         if (isStartWith(requestUri)) {
@@ -78,8 +77,8 @@ public class PreRequestFilter extends ZuulFilter {
             public boolean test(Permission permission) {
                 String url = permission.getUri();
                 String uri = url.replaceAll("\\{\\*\\}", "[a-zA-Z\\\\d]+");
-                String regEx = "^" + uri + "$";
-                return (Pattern.compile(regEx).matcher(requestUri).find() || requestUri.startsWith(url + "/"))
+                //String regEx = "^" + uri + "$";
+                return (Pattern.compile(uri).matcher(requestUri).find() || requestUri.startsWith(url + "/"))
                         && method.equals(permission.getMethod());
             }
         }).collect(Collectors.toList());
@@ -91,6 +90,11 @@ public class PreRequestFilter extends ZuulFilter {
         JWTInfo jwtInfo = null;
         try{
             jwtInfo = getJwtInfo(ctx, request);
+            if (jwtInfo==null){
+                //没有用户信息
+                setFailedRequest(JSON.toJSONString(new TokenForbiddenResponse("Token Forbidden!")),ResponseCode.SUCCESS_CODE.getCode());
+                return null;
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -115,6 +119,7 @@ public class PreRequestFilter extends ZuulFilter {
         if (StringUtils.isBlank(authToken)) {
             authToken = request.getParameter(Constant.TOKEN_HEADER);
         }
+        if(authToken == null) return null;
         ctx.addZuulRequestHeader(Constant.TOKEN_HEADER,authToken);
         // 从token中计算出来user
         return userAuthUtil.getInfoFromToken(authToken);
