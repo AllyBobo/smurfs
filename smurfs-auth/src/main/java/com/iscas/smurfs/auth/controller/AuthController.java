@@ -24,10 +24,10 @@ public class AuthController {
 //        return foo;
 //    }
 
-    @RequestMapping(value = "/token", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/login", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResponseData createAuthenticationToken(
-            @RequestBody AuthRequest authenticationRequest) throws Exception {
-        final String token = authService.login(authenticationRequest);
+            @RequestBody AuthRequest authRequest) throws Exception {
+        final String token = authService.login(authRequest);
         return ResponseData.ok(token);
     }
     @RequestMapping(value = "/userPubKey",method = RequestMethod.GET)
@@ -36,13 +36,13 @@ public class AuthController {
     }
 
 
-
-    @RequestMapping(value = "test", method = RequestMethod.GET)
-    public ResponseData test(
-            ) throws Exception {
-        System.out.println("-------------");
-        return ResponseData.ok("test");
-    }
+//
+//    @RequestMapping(value = "test", method = RequestMethod.GET)
+//    public ResponseData test(
+//            ) throws Exception {
+//        System.out.println("-------------");
+//        return ResponseData.ok("test");
+//    }
 
 
 }

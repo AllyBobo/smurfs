@@ -21,7 +21,7 @@ import java.util.Map;
 public class AuthTest {
 
     public void testToken(){
-        String path = "http://localhost:5555/auth/token";
+        String path = "http://localhost:5555/auth/login";
         JwtAuthenticationRequest jwtAuthenticationRequest = new JwtAuthenticationRequest("test","123");
         String response = OkHttp3Utils.httpPost(path,JsonUtils.toJson(jwtAuthenticationRequest));
         ResponseData responseData = JsonUtils.fromJson(response,ResponseData.class);
