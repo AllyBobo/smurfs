@@ -6,6 +6,7 @@ import com.iscas.smurfs.core.exception.UserTokenException;
 import com.iscas.smurfs.core.helper.JWTHelper;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

@@ -6,6 +6,8 @@ import com.iscas.smurfs.core.entity.JWTInfo;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import org.joda.time.DateTime;
 
 /**
  * description:
@@ -38,5 +40,25 @@ public class JWTHelper {
         Jws<Claims> claimsJws = parserToken(token, pubKey);
         Claims body = claimsJws.getBody();
         return new JWTInfo(body.getSubject(), Integer.parseInt(StringUtils.getObjectValue(body.get(Constant.JWT_KEY_USER_ID))), StringUtils.getObjectValue(body.get(Constant.JWT_KEY_NAME)));
+    }
+
+    /**
+     * 密钥加密token
+     *
+     * @param
+     * @param priKey
+     * @param expire
+     * @return
+     * @throws Exception
+     */
+    public static String generateToken(String uid,String name, byte priKey[], int expire) throws Exception {
+        String compactJws = Jwts.builder()
+                .setSubject(name)//TODO:改成unicname
+                .claim(Constant.JWT_KEY_USER_ID, uid)
+                .claim(Constant.JWT_KEY_NAME, name)
+                .setExpiration(DateTime.now().plusSeconds(expire).toDate())
+                .signWith(SignatureAlgorithm.RS256, rsaKeyHelper.getPrivateKey(priKey))
+                .compact();
+        return compactJws;
     }
 }

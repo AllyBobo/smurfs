@@ -23,7 +23,9 @@ public class AuthTest {
     public void testToken(){
         String path = "http://localhost:5555/auth/token";
         JwtAuthenticationRequest jwtAuthenticationRequest = new JwtAuthenticationRequest("test","123");
-        String token = OkHttp3Utils.httpPost(path,JsonUtils.toJson(jwtAuthenticationRequest));
+        String response = OkHttp3Utils.httpPost(path,JsonUtils.toJson(jwtAuthenticationRequest));
+        ResponseData responseData = JsonUtils.fromJson(response,ResponseData.class);
+        String token = (String)responseData.getData();
         System.out.println(token);
         String pubkey = OkHttp3Utils.httpGet("http://localhost:5555/auth/userPubKey",token);
         System.out.println(pubkey);

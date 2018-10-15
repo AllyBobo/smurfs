@@ -2,9 +2,11 @@ package com.iscas.smurfs.common.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class ResponseData<T> {
     private int code = 200;
     private String message = "";

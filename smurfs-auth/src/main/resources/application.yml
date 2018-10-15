@@ -14,7 +14,8 @@ eureka:
       enabled: true
     serviceUrl:
       defaultZone: http://localhost:8000/eureka/
-
+jwt:
+  expire: 60000
 #spring:
 #  cloud:
 #    config:

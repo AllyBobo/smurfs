@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(value = "${AUTHSERVICE}",configuration = {})
+@FeignClient(value = "AUTHSERVICE",fallback = AuthRemoteHystrix.class)
 public interface AuthRemote {
-    @RequestMapping(value = "/auth/userPubKey",method = RequestMethod.GET)
+    @RequestMapping(value = "/userPubKey",method = RequestMethod.GET)
     public ResponseData<byte[]> getUserPublicKey();
 
 }
