@@ -19,3 +19,8 @@ DBAuthClientService中有自动注册服务，这样做的目的？
 springcloud集中配置问题，mysql和redis修改为集中配置
 
 RedisCacheAutoConfiguration中 配置文件的其他属性怎么在程序中配置
+
+jwt续签 注销
+
+**提升网站速度的方法，深入分析mybatis,特别是mybatis调用存储过程，sql注入 url注入 脚本注入
+**测试不同连接池，以及不同参数下的数据库访问性能。mybatisplus fastmybatis
