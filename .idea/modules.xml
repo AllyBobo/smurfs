@@ -12,9 +12,6 @@
       <module fileurl="file://$PROJECT_DIR$/smurfs-dbservice/smurfs-dbservice.iml" filepath="$PROJECT_DIR$/smurfs-dbservice/smurfs-dbservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/smurfs-eureka/smurfs-eureka.iml" filepath="$PROJECT_DIR$/smurfs-eureka/smurfs-eureka.iml" />
       <module fileurl="file://$PROJECT_DIR$/smurfs-logservice/smurfs-logservice.iml" filepath="$PROJECT_DIR$/smurfs-logservice/smurfs-logservice.iml" />
-      <module fileurl="file://$PROJECT_DIR$/smurfs-oauth2/smurfs-oauth2.iml" filepath="$PROJECT_DIR$/smurfs-oauth2/smurfs-oauth2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/smurfs-opera1service/smurfs-opera1service.iml" filepath="$PROJECT_DIR$/smurfs-opera1service/smurfs-opera1service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/smurfs-opera2service/smurfs-opera2service.iml" filepath="$PROJECT_DIR$/smurfs-opera2service/smurfs-opera2service.iml" />
       <module fileurl="file://$PROJECT_DIR$/smurfs-parent/smurfs-parent.iml" filepath="$PROJECT_DIR$/smurfs-parent/smurfs-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/smurfs-test/smurfs-test.iml" filepath="$PROJECT_DIR$/smurfs-test/smurfs-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/smurfs-zuul/smurfs-zuul.iml" filepath="$PROJECT_DIR$/smurfs-zuul/smurfs-zuul.iml" />

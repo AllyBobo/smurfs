@@ -38,11 +38,9 @@ public class RedisCacheAutoConfiguration {
     @Bean
     public LettuceConnectionFactory redisConnectionFactory() {
         RedisStandaloneConfiguration redisConf = new RedisStandaloneConfiguration();
-//        redisConf.setHostName(env.getProperty("spring.redis.host"));
-//        redisConf.setPort(Integer.parseInt(env.getProperty("spring.redis.port")));
-//        redisConf.setPassword(RedisPassword.of(env.getProperty("spring.redis.password")));
-        redisConf.setHostName("127.0.0.1");
-        redisConf.setPort(6379);
+        redisConf.setHostName(env.getProperty("spring.redis.host"));
+        redisConf.setPort(Integer.parseInt(env.getProperty("spring.redis.port")));
+        redisConf.setPassword(RedisPassword.of(env.getProperty("spring.redis.password")));
 
         return new LettuceConnectionFactory(redisConf);
     }
