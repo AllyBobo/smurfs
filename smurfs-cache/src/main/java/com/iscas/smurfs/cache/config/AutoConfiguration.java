@@ -1,4 +1,4 @@
-package com.iscas.smurfs.cache;
+package com.iscas.smurfs.cache.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;

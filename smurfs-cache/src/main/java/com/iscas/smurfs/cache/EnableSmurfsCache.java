@@ -1,5 +1,6 @@
 package com.iscas.smurfs.cache;
 
+import com.iscas.smurfs.cache.config.AutoConfiguration;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
