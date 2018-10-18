@@ -6,27 +6,26 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="smurfs-admin" />
         <module name="smurfs-auth" />
         <module name="smurfs-cache" />
         <module name="smurfs-cert" />
         <module name="smurfs-common" />
         <module name="smurfs-config" />
         <module name="smurfs-core" />
-        <module name="smurfs-dbservice" />
         <module name="smurfs-eureka" />
-        <module name="smurfs-logservice" />
         <module name="smurfs-test" />
         <module name="smurfs-zuul" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="smurfs-admin" target="1.8" />
       <module name="smurfs-auth" target="1.8" />
       <module name="smurfs-cache" target="1.8" />
       <module name="smurfs-cert" target="1.8" />
       <module name="smurfs-common" target="1.8" />
       <module name="smurfs-config" target="1.8" />
       <module name="smurfs-core" target="1.8" />
-      <module name="smurfs-dbservice" target="1.8" />
       <module name="smurfs-eureka" target="1.8" />
       <module name="smurfs-logservice" target="1.8" />
       <module name="smurfs-oauth2" target="1.8" />

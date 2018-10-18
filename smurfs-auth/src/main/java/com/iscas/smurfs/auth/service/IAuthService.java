@@ -1,7 +1,7 @@
 package com.iscas.smurfs.auth.service;
 
-import com.iscas.smurfs.auth.entity.AuthRequest;
-import com.iscas.smurfs.core.entity.User;
+import com.iscas.smurfs.auth.entity.dto.UserLoginDto;
+import com.iscas.smurfs.core.admin.entity.po.User;
 
 /**
  * description:
@@ -11,6 +11,6 @@ import com.iscas.smurfs.core.entity.User;
  */
 public interface IAuthService {
 
-    String login(AuthRequest authenticationRequest) throws Exception;
+    String login(UserLoginDto authenticationRequest) throws Exception;
     User validate(String username, String password);
 }

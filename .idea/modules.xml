@@ -3,15 +3,14 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/smurfs.iml" filepath="$PROJECT_DIR$/.idea/smurfs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smurfs-admin/smurfs-admin.iml" filepath="$PROJECT_DIR$/smurfs-admin/smurfs-admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/smurfs-auth/smurfs-auth.iml" filepath="$PROJECT_DIR$/smurfs-auth/smurfs-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/smurfs-cache/smurfs-cache.iml" filepath="$PROJECT_DIR$/smurfs-cache/smurfs-cache.iml" />
       <module fileurl="file://$PROJECT_DIR$/smurfs-cert/smurfs-cert.iml" filepath="$PROJECT_DIR$/smurfs-cert/smurfs-cert.iml" />
       <module fileurl="file://$PROJECT_DIR$/smurfs-common/smurfs-common.iml" filepath="$PROJECT_DIR$/smurfs-common/smurfs-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/smurfs-config/smurfs-config.iml" filepath="$PROJECT_DIR$/smurfs-config/smurfs-config.iml" />
       <module fileurl="file://$PROJECT_DIR$/smurfs-core/smurfs-core.iml" filepath="$PROJECT_DIR$/smurfs-core/smurfs-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/smurfs-dbservice/smurfs-dbservice.iml" filepath="$PROJECT_DIR$/smurfs-dbservice/smurfs-dbservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/smurfs-eureka/smurfs-eureka.iml" filepath="$PROJECT_DIR$/smurfs-eureka/smurfs-eureka.iml" />
-      <module fileurl="file://$PROJECT_DIR$/smurfs-logservice/smurfs-logservice.iml" filepath="$PROJECT_DIR$/smurfs-logservice/smurfs-logservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/smurfs-parent/smurfs-parent.iml" filepath="$PROJECT_DIR$/smurfs-parent/smurfs-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/smurfs-test/smurfs-test.iml" filepath="$PROJECT_DIR$/smurfs-test/smurfs-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/smurfs-zuul/smurfs-zuul.iml" filepath="$PROJECT_DIR$/smurfs-zuul/smurfs-zuul.iml" />

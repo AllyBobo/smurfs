@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Bean;
 @EnableEurekaClient
 @EnableDiscoveryClient
 @EnableSmurfsCert
-@EnableFeignClients({"com.iscas.smurfs.zuul.remote","com.iscas.smurfs.cert.remote"})
+@EnableFeignClients({"com.iscas.smurfs.zuul.feign","com.iscas.smurfs.cert.feign"})
 public class ZuulApplication {
     public static void main(String[] args) {
         new SpringApplicationBuilder(ZuulApplication.class).web(true).run(args);

@@ -3,14 +3,6 @@ package com.iscas.smurfs.test.auth;
 import com.iscas.smurfs.common.entity.ResponseData;
 import com.iscas.smurfs.common.utils.JsonUtils;
 import com.iscas.smurfs.common.utils.OkHttp3Utils;
-import com.iscas.smurfs.core.entity.User;
-import okhttp3.*;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * description:

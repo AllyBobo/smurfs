@@ -1,16 +1,14 @@
 package com.iscas.smurfs.cert.runner;
 
-import com.iscas.smurfs.cert.config.UserAuthConfig;
-import com.iscas.smurfs.cert.jwt.UserAuthUtil;
+import com.iscas.smurfs.cert.config.UserConfiguration;
 
-import com.iscas.smurfs.cert.remote.AuthRemote;
+import com.iscas.smurfs.cert.feign.IAuthFeign;
 import com.iscas.smurfs.common.entity.ResponseData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
-import org.springframework.scheduling.annotation.Scheduled;
 
 /**
  * description:
@@ -23,10 +21,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 public class AuthClientRunner implements CommandLineRunner {
 
     @Autowired
-    private UserAuthConfig userAuthConfig;
+    private UserConfiguration userAuthConfig;
 
     @Autowired
-    AuthRemote authRemote;
+    IAuthFeign authRemote;
 
     @Override
     public void run(String... args) throws Exception {
