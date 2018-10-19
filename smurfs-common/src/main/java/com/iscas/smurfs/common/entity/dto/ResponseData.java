@@ -1,4 +1,4 @@
-package com.iscas.smurfs.common.entity;
+package com.iscas.smurfs.common.entity.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

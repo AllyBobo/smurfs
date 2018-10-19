@@ -3,7 +3,7 @@ package com.iscas.smurfs.auth.controller;
 import com.iscas.smurfs.auth.config.KeyConfiguration;
 import com.iscas.smurfs.auth.service.IAuthService;
 import com.iscas.smurfs.auth.entity.dto.UserLoginDto;
-import com.iscas.smurfs.common.entity.ResponseData;
+import com.iscas.smurfs.common.entity.dto.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +22,7 @@ public class AuthController {
         final String token = authService.login(userLoginDto);
         return ResponseData.ok(token);
     }
+
     @RequestMapping(value = "/userPubKey",method = RequestMethod.GET)
     public ResponseData<byte[]> getUserPublicKey(){
         return ResponseData.ok(keyConfiguration.getUserPubKey());

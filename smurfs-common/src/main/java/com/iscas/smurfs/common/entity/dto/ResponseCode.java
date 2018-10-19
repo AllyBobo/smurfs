@@ -1,4 +1,4 @@
-package com.iscas.smurfs.common.entity;
+package com.iscas.smurfs.common.entity.dto;
 
 
 public enum ResponseCode {

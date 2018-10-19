@@ -1,6 +1,6 @@
 package com.iscas.smurfs.test.auth;
 
-import com.iscas.smurfs.common.entity.ResponseData;
+import com.iscas.smurfs.common.entity.dto.ResponseData;
 import com.iscas.smurfs.common.utils.JsonUtils;
 import com.iscas.smurfs.common.utils.OkHttp3Utils;
 
