@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserPermissionBizImpl extends BaseBizImpl<UserPermissionMapper,UserPermission> implements IUserPermissionBiz{
 
-    @Cacheable
+    @Cacheable("per")
     @Override
     public boolean checkUserAndPermission(Integer userid, Long permissionid) {
         UserPermission userPermission = new UserPermission();

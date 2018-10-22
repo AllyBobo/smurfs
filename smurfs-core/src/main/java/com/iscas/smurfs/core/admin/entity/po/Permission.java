@@ -1,9 +1,10 @@
 package com.iscas.smurfs.core.admin.entity.po;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Table(name = "t_permission")
-public class Permission {
+public class Permission implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

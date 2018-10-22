@@ -20,7 +20,7 @@ import java.util.List;
 @Transactional
 public class PermissionBizImpl extends BaseBizImpl<PermissionMapper,Permission> implements IPermissionBiz {
 
-//    @Cacheable
+    @Cacheable("per")
     @Override
     public boolean checkUrlPermission(String url, String method) {
         Permission permission = new Permission();
@@ -29,8 +29,8 @@ public class PermissionBizImpl extends BaseBizImpl<PermissionMapper,Permission> 
         return super.mapper.select(permission).isEmpty();
     }
 
-    //@Log
-    //@Cacheable
+    @Log
+    @Cacheable("per")
     @Override
     public List<Permission> getAllPermissions() {
         return super.mapper.selectAll();

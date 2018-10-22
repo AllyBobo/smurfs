@@ -23,7 +23,7 @@ public class AspectConfiguration {
     //创建被装饰者
     @Autowired
     AspectApi aspectApi;
-    @Pointcut("execution(* com.iscas.smurfs.*.biz..*(..))  ")
+   @Pointcut("execution(* com.iscas.smurfs.*.biz..*.*(..))")
     public void aspect() {
     }
 
