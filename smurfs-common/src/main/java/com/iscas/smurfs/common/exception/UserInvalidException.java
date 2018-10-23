@@ -1,5 +1,6 @@
 package com.iscas.smurfs.common.exception;
 
+import com.iscas.smurfs.common.constant.Constant;
 import com.iscas.smurfs.common.exception.BaseException;
 
 /**
@@ -10,6 +11,6 @@ import com.iscas.smurfs.common.exception.BaseException;
  */
 public class UserInvalidException extends BaseException {
     public UserInvalidException(String message) {
-        super(message, 40101);
+        super(message, Constant.EX_USER_INVALID_CODE);
     }
 }
