@@ -1,6 +1,6 @@
-package com.iscas.smurfs.cache;
+package com.iscas.smurfs.common;
 
-import com.iscas.smurfs.cache.config.AutoConfiguration;
+import com.iscas.smurfs.common.config.AutoConfiguration;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
@@ -14,5 +14,5 @@ import java.lang.annotation.*;
 @Import(AutoConfiguration.class)
 @Documented
 @Inherited
-public @interface EnableSmurfsCache {
+public @interface EnableSmurfsCommon {
 }
