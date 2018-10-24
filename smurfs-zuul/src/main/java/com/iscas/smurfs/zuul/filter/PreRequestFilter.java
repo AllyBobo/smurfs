@@ -7,7 +7,7 @@ import com.iscas.smurfs.cert.service.UserJwtService;
 import com.iscas.smurfs.common.entity.dto.ResponseCode;
 import com.iscas.smurfs.common.constant.Constant;
 import com.iscas.smurfs.common.entity.dto.TokenForbiddenResponse;
-import com.iscas.smurfs.core.admin.entity.dto.UserJwtDto;
+import com.iscas.smurfs.common.entity.dto.UserJwtDto;
 import com.iscas.smurfs.core.admin.entity.po.Permission;
 import com.iscas.smurfs.zuul.feign.IAdminFeign;
 import com.netflix.zuul.ZuulFilter;

@@ -10,6 +10,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserLoginDto implements Serializable {
-    private String username;
+    private String username;//对应UserJwtDto中的username
     private String password;
 }

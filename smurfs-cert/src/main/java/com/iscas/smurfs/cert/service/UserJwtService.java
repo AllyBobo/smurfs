@@ -1,7 +1,7 @@
 package com.iscas.smurfs.cert.service;
 
 import com.iscas.smurfs.cert.config.UserConfiguration;
-import com.iscas.smurfs.core.admin.entity.dto.UserJwtDto;
+import com.iscas.smurfs.common.entity.dto.UserJwtDto;
 import com.iscas.smurfs.common.exception.UserTokenException;
 import com.iscas.smurfs.core.helper.JwtHelper;
 import io.jsonwebtoken.ExpiredJwtException;
