@@ -1,6 +1,6 @@
 package com.iscas.smurfs.auth.controller;
 
-import com.iscas.smurfs.auth.config.KeyConfiguration;
+import com.iscas.smurfs.common.config.KeyConfiguration;
 import com.iscas.smurfs.auth.service.IAuthService;
 import com.iscas.smurfs.auth.entity.dto.UserLoginDto;
 import com.iscas.smurfs.common.entity.dto.ResponseData;

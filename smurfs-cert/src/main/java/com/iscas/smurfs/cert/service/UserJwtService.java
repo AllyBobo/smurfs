@@ -1,9 +1,9 @@
 package com.iscas.smurfs.cert.service;
 
-import com.iscas.smurfs.cert.config.UserConfiguration;
+import com.iscas.smurfs.common.config.UserConfiguration;
 import com.iscas.smurfs.common.entity.dto.UserJwtDto;
 import com.iscas.smurfs.common.exception.UserTokenException;
-import com.iscas.smurfs.core.helper.JwtHelper;
+import com.iscas.smurfs.common.utils.JwtHelper;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
 import org.springframework.beans.factory.annotation.Autowired;

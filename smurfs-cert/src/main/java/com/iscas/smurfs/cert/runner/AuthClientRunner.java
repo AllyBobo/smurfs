@@ -1,6 +1,6 @@
 package com.iscas.smurfs.cert.runner;
 
-import com.iscas.smurfs.cert.config.UserConfiguration;
+import com.iscas.smurfs.common.config.UserConfiguration;
 
 import com.iscas.smurfs.cert.feign.IAuthFeign;
 import com.iscas.smurfs.common.entity.dto.ResponseData;
@@ -21,10 +21,10 @@ import org.springframework.http.HttpStatus;
 public class AuthClientRunner implements CommandLineRunner {
 
     @Autowired
-    private UserConfiguration userAuthConfig;
+    private UserConfiguration userConfiguration;
 
     @Autowired
-    IAuthFeign authRemote;
+    IAuthFeign authFeign;
 
     @Override
     public void run(String... args) throws Exception {
@@ -37,10 +37,10 @@ public class AuthClientRunner implements CommandLineRunner {
     }
     //@Scheduled(cron = "0 0/1 * * * ?")
     public void refreshUserPubKey(){
-        ResponseData resp = authRemote.getUserPublicKey();
+        ResponseData resp = authFeign.getUserPublicKey();
         if (resp.getCode() == HttpStatus.OK.value()) {
             ResponseData<byte[]> userResponse = (ResponseData<byte[]>) resp;
-            this.userAuthConfig.setPubKeyByte(userResponse.getData());
+            this.userConfiguration.setPubKeyByte(userResponse.getData());
         }
     }
 

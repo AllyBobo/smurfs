@@ -25,7 +25,6 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.3" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.3" level="project" />
-    <orderEntry type="library" name="Maven: joda-time:joda-time:2.9.5" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.9" level="project" />
     <orderEntry type="module" module-name="smurfs-common" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.32" level="project" />
@@ -44,6 +43,14 @@
     <orderEntry type="library" name="Maven: org.apache.poi:poi-ooxml-schemas:3.9" level="project" />
     <orderEntry type="library" name="Maven: org.apache.xmlbeans:xmlbeans:2.3.0" level="project" />
     <orderEntry type="library" name="Maven: stax:stax-api:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: joda-time:joda-time:2.9.9" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-starter-openfeign:2.0.0.M1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-openfeign-core:2.0.0.M1" level="project" />
+    <orderEntry type="library" name="Maven: io.github.openfeign:feign-core:9.5.1" level="project" />
+    <orderEntry type="library" name="Maven: io.github.openfeign:feign-slf4j:9.5.1" level="project" />
+    <orderEntry type="library" name="Maven: io.github.openfeign:feign-hystrix:9.5.1" level="project" />
+    <orderEntry type="library" name="Maven: com.netflix.hystrix:hystrix-core:1.5.12" level="project" />
+    <orderEntry type="library" name="Maven: io.github.openfeign:feign-java8:9.5.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.0.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.0.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:5.0.4.RELEASE" level="project" />
@@ -147,7 +154,6 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.netflix.ribbon:ribbon-transport:2.2.4" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: io.reactivex:rxnetty-contexts:0.4.9" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: io.reactivex:rxnetty-servo:0.4.9" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: com.netflix.hystrix:hystrix-core:1.5.12" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: io.reactivex:rxnetty:0.4.9" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: io.netty:netty-codec-http:4.1.22.Final" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: io.netty:netty-codec:4.1.22.Final" level="project" />

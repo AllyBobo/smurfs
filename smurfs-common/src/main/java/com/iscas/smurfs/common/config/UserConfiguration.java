@@ -1,4 +1,4 @@
-package com.iscas.smurfs.cert.config;
+package com.iscas.smurfs.common.config;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,13 +1,13 @@
 package com.iscas.smurfs.auth.service;
 
 
-import com.iscas.smurfs.auth.config.KeyConfiguration;
+import com.iscas.smurfs.common.config.KeyConfiguration;
 import com.iscas.smurfs.auth.entity.dto.UserLoginDto;
 import com.iscas.smurfs.auth.feign.IAdminFeign;
 import com.iscas.smurfs.common.utils.JsonUtils;
 import com.iscas.smurfs.core.admin.entity.po.User;
 import com.iscas.smurfs.common.exception.UserInvalidException;
-import com.iscas.smurfs.core.helper.JwtHelper;
+import com.iscas.smurfs.common.utils.JwtHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

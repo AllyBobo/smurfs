@@ -1,4 +1,4 @@
-package com.iscas.smurfs.core.helper;
+package com.iscas.smurfs.common.utils;
 
 import com.iscas.smurfs.common.utils.RsaUtils;
 import com.iscas.smurfs.common.utils.StringUtils;

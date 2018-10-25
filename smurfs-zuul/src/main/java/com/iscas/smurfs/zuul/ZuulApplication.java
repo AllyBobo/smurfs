@@ -2,6 +2,7 @@ package com.iscas.smurfs.zuul;
 
 //import com.iscas.smurfs.zuul.filter.PreRequestFilter;
 import com.iscas.smurfs.cert.EnableSmurfsCert;
+import com.iscas.smurfs.common.EnableSmurfsCommon;
 import com.iscas.smurfs.zuul.filter.PreRequestFilter;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -17,6 +18,7 @@ import org.springframework.context.annotation.Bean;
 @EnableEurekaClient
 @EnableDiscoveryClient
 @EnableSmurfsCert
+@EnableSmurfsCommon
 @EnableFeignClients({"com.iscas.smurfs.zuul.feign","com.iscas.smurfs.cert.feign"})
 public class ZuulApplication {
     public static void main(String[] args) {

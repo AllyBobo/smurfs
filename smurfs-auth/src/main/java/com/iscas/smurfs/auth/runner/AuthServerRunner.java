@@ -1,6 +1,6 @@
 package com.iscas.smurfs.auth.runner;
 
-import com.iscas.smurfs.auth.config.KeyConfiguration;
+import com.iscas.smurfs.common.config.KeyConfiguration;
 import com.iscas.smurfs.common.utils.RsaUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

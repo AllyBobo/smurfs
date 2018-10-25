@@ -1,6 +1,7 @@
 package com.iscas.smurfs.auth;
 
 import com.iscas.smurfs.cache.EnableSmurfsCache;
+import com.iscas.smurfs.common.EnableSmurfsCommon;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -10,6 +11,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableSmurfsCache
+@EnableSmurfsCommon
 @EnableEurekaClient
 @EnableFeignClients
 @EnableDiscoveryClient

@@ -1,4 +1,4 @@
-package com.iscas.smurfs.auth.config;
+package com.iscas.smurfs.common.config;
 
 import lombok.Data;
 import org.springframework.context.annotation.Configuration;
