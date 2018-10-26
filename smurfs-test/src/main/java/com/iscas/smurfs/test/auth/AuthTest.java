@@ -21,6 +21,10 @@ public class AuthTest {
         System.out.println(token);
         String pubkey = OkHttp3Utils.httpGet("http://localhost:5555/auth/userPubKey",token);
         System.out.println(pubkey);
+        String message = OkHttp3Utils.httpGet("http://localhost:5555/auth/logout");
+        System.out.println(message);
+        String pubkey1 = OkHttp3Utils.httpGet("http://localhost:5555/auth/userPubKey");
+        System.out.println(pubkey1);
 
 //        String path1 = "http://localhost:5555/foo";
 //        System.out.println(OkHttp3Utils.httpGet(path1,token));

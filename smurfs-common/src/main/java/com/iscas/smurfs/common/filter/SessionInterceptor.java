@@ -7,6 +7,7 @@ import com.iscas.smurfs.common.constant.Constant;
 import com.iscas.smurfs.common.context.CustomSession;
 import com.iscas.smurfs.common.entity.dto.UserJwtDto;
 import com.iscas.smurfs.common.utils.JwtHelper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.method.HandlerMethod;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  * @date 2018/10/25
  */
 @Service
+@Slf4j
 public class SessionInterceptor extends HandlerInterceptorAdapter {
     @Autowired
     UserConfiguration userConfiguration;
@@ -30,6 +32,7 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HandlerMethod handlerMethod = (HandlerMethod)handler;
+        log.info("handlerMethod============"+handlerMethod.getMethod());
         //判断客户端是普通用户而不是服务
         if(request.getHeader(Constant.CLIENT_TAG)==null) {
             NeedToken needToken = handlerMethod.getBeanType().getAnnotation(NeedToken.class);
@@ -40,6 +43,7 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
                     CustomSession.setUserID(userJwtDto.getUserId().toString());
                     CustomSession.setName(userJwtDto.getName());
                     CustomSession.setUsername(userJwtDto.getUsername());
+                    CustomSession.setToken(token);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

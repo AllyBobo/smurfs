@@ -1,7 +1,6 @@
 package com.iscas.smurfs.common.context;
 
 import com.iscas.smurfs.common.constant.Constant;
-import com.iscas.smurfs.common.entity.dto.UserJwtDto;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,7 +49,6 @@ public class CustomSession {
         return returnObjectValue(value);
     }
 
-
     public static String getName(){
         Object value = get(Constant.CONTEXT_KEY_USER_NAME);
         return getObjectValue(value);
@@ -75,6 +73,7 @@ public class CustomSession {
     private static String returnObjectValue(Object value) {
         return value==null?null:value.toString();
     }
+
     public static String getObjectValue(Object obj){
         return obj==null?"":obj.toString();
     }

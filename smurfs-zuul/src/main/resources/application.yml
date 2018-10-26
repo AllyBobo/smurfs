@@ -1,0 +1,62 @@
+#spring.application.name=APIGATEWAY
+#server.port=5555
+#
+## routes to serviceId 这里边是通过serviceid来绑定地址，当在路径后添加/api-a/   则是访问service-A对应的服务。
+##zuul.routes.api-a.path=/api-a/**
+##zuul.routes.api-a.strip-prefix=false
+##zuul.routes.api-a.serviceId=OPERA1SERVICE
+##
+##zuul.routes.api-b.path=/api-b/**
+##zuul.routes.api-b.strip-prefix=false
+##zuul.routes.api-b.serviceId=OPERA2SERVICE
+#
+#zuul.routes.api-c.path=/auth/**
+#zuul.routes.api-a.strip-prefix=true
+#zuul.routes.api-c.serviceId=AUTHSERVICE
+##zuul.prefix=api
+#gate.ignore.startWith=user
+#
+## routes to url  这里是绑定具体的ip地址
+##zuul.routes.api-a-url.path=/api/**
+##zuul.routes.api-a-url.url=http://localhost:8993/
+#
+#eureka.client.serviceUrl.defaultZone=http://localhost:8000/eureka/
+##
+#ribbon.eureka.eabled=true
+#auth.user.token-header=Authorization
+auth:
+  user:
+    token-header: Authorization
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
+gate:
+  ignore:
+    startWith: user
+ribbon:
+  eureka:
+    eabled: true
+server:
+  port: 5555
+spring:
+  application:
+    name: APIGATEWAY
+  redis:
+    host: 127.0.0.1 #redis服务器地址
+    timeout: 10000 #超时时间
+    database: 0 #0-15 16个库 默认0
+    lettuce:
+      pool:
+        max-active: 8 #最大连接数
+        max-wait: -1 #默认-1 最大连接阻塞等待时间
+        max-idle: 8 #最大空闲连接 默认8
+        min-idle: 0 #最小空闲连接
+    port: 6379
+zuul:
+  routes:
+    api-a:
+      strip-prefix: true
+    api-c:
+      path: /auth/**
+      serviceId: AUTHSERVICE

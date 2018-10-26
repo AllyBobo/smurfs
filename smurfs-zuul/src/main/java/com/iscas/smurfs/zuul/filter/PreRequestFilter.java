@@ -17,6 +17,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,6 +36,8 @@ public class PreRequestFilter extends ZuulFilter {
     @Autowired
     @Lazy
     UserJwtService userJwtService;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Value("${gate.ignore.startWith}")
     private String startWith;
@@ -59,6 +62,7 @@ public class PreRequestFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
         log.info(String.format(" send %s request to %s", request.getMethod(), request.getRequestURL().toString()));
+        //TODO:在网关这个层面注解就失效了要用白名单，这个问题怎么解决
         final String requestUri = request.getRequestURI();
 
         final String method = request.getMethod();
@@ -66,7 +70,44 @@ public class PreRequestFilter extends ZuulFilter {
         if (isStartWith(requestUri)) {
             return null;
         }
+        //判断当前要访问的资源是否有权限信息
+        List<Permission> permissions = getPermissions(requestUri, method);
+        if (permissions == null) return null;
+        //判断是否有用户信息
+        UserJwtDto userJwtDto = null;
+        try{
+            userJwtDto = getUserJwtInfo(ctx, request);
+            if (userJwtDto==null){
+                //没有用户信息
+                setFailedRequest(JSON.toJSONString(new TokenForbiddenResponse("Token Forbidden!")),ResponseCode.SUCCESS_CODE.getCode());
+                return null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        //既有授权信息又有用户信息，判断是否匹配
+        Boolean isPermission = isPer(permissions, userJwtDto);
+        //没有授权
+        if(!isPermission){
+            setFailedRequest(JSON.toJSONString(new TokenForbiddenResponse("Token Forbidden!")),ResponseCode.SUCCESS_CODE.getCode());
+        }else {
+            ctx.addZuulRequestHeader("userId", userJwtDto.getUserId().toString());
+            ctx.addZuulRequestHeader("userName", URLEncoder.encode(userJwtDto.getName()));
+        }
+        return null;
+    }
 
+    private Boolean isPer(List<Permission> permissions, UserJwtDto userJwtDto) {
+        Boolean isPermission = false;
+
+        for(Permission permission : permissions){
+            isPermission = adminFeign.checkUserAndPermission(userJwtDto.getUserId(),permission.getId());
+            if (isPermission.equals(true)) break;
+        }
+        return isPermission;
+    }
+
+    private List<Permission> getPermissions(String requestUri, String method) {
         List<Permission> permissions = JSON.parseObject(adminFeign.getAllPermissions(),new TypeReference<List<Permission>>(){});
         List<Permission> result = permissions.parallelStream().filter(new Predicate<Permission>() {
             @Override
@@ -83,42 +124,21 @@ public class PreRequestFilter extends ZuulFilter {
         if (result==null || result.isEmpty()){
             return null;
         }
-        UserJwtDto userJwtDto = null;
-        try{
-            userJwtDto = getUserJwtInfo(ctx, request);
-            if (userJwtDto==null){
-                //没有用户信息
-                setFailedRequest(JSON.toJSONString(new TokenForbiddenResponse("Token Forbidden!")),ResponseCode.SUCCESS_CODE.getCode());
-                return null;
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        Boolean isPermission = false;
-
-        for(Permission permission : permissions){
-            isPermission = adminFeign.checkUserAndPermission(userJwtDto.getUserId(),permission.getId());
-            if (isPermission.equals(true)) break;
-        }
-        //没有授权
-        if(!isPermission){
-            setFailedRequest(JSON.toJSONString(new TokenForbiddenResponse("Token Forbidden!")),ResponseCode.SUCCESS_CODE.getCode());
-        }else {
-            ctx.addZuulRequestHeader("userId", userJwtDto.getUserId().toString());
-            ctx.addZuulRequestHeader("userName", URLEncoder.encode(userJwtDto.getName()));
-        }
-        return null;
+        return permissions;
     }
 
     private UserJwtDto getUserJwtInfo(RequestContext ctx, HttpServletRequest request) throws Exception {
-        String authToken = request.getHeader(Constant.TOKEN_HEADER);
-        if (StringUtils.isBlank(authToken)) {
-            authToken = request.getParameter(Constant.TOKEN_HEADER);
+        
+        String token = request.getHeader(Constant.TOKEN_HEADER);
+        if (StringUtils.isBlank(token)) {
+            token = request.getParameter(Constant.TOKEN_HEADER);
         }
-        if(authToken == null) return null;
-        ctx.addZuulRequestHeader(Constant.TOKEN_HEADER,authToken);
+        if(token == null) return null;
+        //redis里的缓存被清除了，已注销
+        if (redisTemplate.opsForValue().get(token)==null) return null;
+        ctx.addZuulRequestHeader(Constant.TOKEN_HEADER,token);
         // 从token中计算出来user
-        return userJwtService.getInfoFromToken(authToken);
+        return userJwtService.getInfoFromToken(token);
     }
 
     private boolean isStartWith(String requestUri) {

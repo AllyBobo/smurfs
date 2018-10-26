@@ -1,6 +1,7 @@
 package com.iscas.smurfs.zuul;
 
 //import com.iscas.smurfs.zuul.filter.PreRequestFilter;
+import com.iscas.smurfs.cache.EnableSmurfsCache;
 import com.iscas.smurfs.cert.EnableSmurfsCert;
 import com.iscas.smurfs.common.EnableSmurfsCommon;
 import com.iscas.smurfs.zuul.filter.PreRequestFilter;
@@ -17,6 +18,7 @@ import org.springframework.context.annotation.Bean;
 @EnableZuulProxy
 @EnableEurekaClient
 @EnableDiscoveryClient
+@EnableSmurfsCache
 @EnableSmurfsCert
 @EnableSmurfsCommon
 @EnableFeignClients({"com.iscas.smurfs.zuul.feign","com.iscas.smurfs.cert.feign"})

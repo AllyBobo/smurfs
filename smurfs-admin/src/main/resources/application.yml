@@ -61,7 +61,9 @@ eureka:
       enabled: true
     serviceUrl:
       defaultZone: http://localhost:8000/eureka/
-
+auth:
+  user:
+    token-header: Authorization
 #ribbon:
 #  eureka:
 #    enable: true

@@ -30,8 +30,8 @@ public class AuthServiceImpl implements IAuthService {
     KeyConfiguration keyConfiguration;
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
     @Override
-    public String login(UserLoginDto authenticationRequest) throws Exception {
-        User user = validate(authenticationRequest.getUsername(),authenticationRequest.getPassword());
+    public String login(UserLoginDto userLoginDto) throws Exception {
+        User user = validate(userLoginDto.getUsername(),userLoginDto.getPassword());
         if(user!=null){
             return JwtHelper.generateToken(user.getId().toString(),user.getUsername(),keyConfiguration.getUserPriKey(),expire);
         }
