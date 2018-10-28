@@ -1,5 +1,6 @@
 package com.iscas.smurfs.cache.utils;
 
+import com.iscas.smurfs.common.utils.SpringContextUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.*;
@@ -16,11 +17,11 @@ public class RedisUtils {
 
     private static Logger logger = LoggerFactory.getLogger(RedisUtils.class);
 
-    private RedisTemplate<String, Object> redisTemplate;
+    private static RedisTemplate<String, Object> redisTemplate = SpringContextUtils.getBean(RedisTemplate.class);
 
-    public void setRedisTemplate(RedisTemplate<String, Object> redisTemplate) {
-        this.redisTemplate = redisTemplate;
-    }
+//    public void setRedisTemplate(RedisTemplate<String, Object> redisTemplate) {
+//        this.redisTemplate = redisTemplate;
+//    }
 
     /**
      *
@@ -137,7 +138,7 @@ public class RedisUtils {
      * @email 1025742048@qq.com<br>
      * @date 2016年12月22日 下午4:47:14
      * @param key
-     * @param value
+     * @param
      * @param minus
      * <br>
      */
