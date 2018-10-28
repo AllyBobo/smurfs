@@ -1,28 +1,28 @@
 server:
-  port: 8993
+  port: 9100
 
 spring:
     application:
-        name: AUTHSERVICE
+        name: testservice
 
-eureka:
+#eureka:
 #  instance:
 #    lease-expiration-duration-in-seconds: 10
 #    lease-renewal-interval-in-seconds: 30
-  client:
-    heathcheck:
-      enabled: true
-    serviceUrl:
-      defaultZone: http://localhost:8000/eureka/
+#  client:
+#    heathcheck:
+#      enabled: true
+#    serviceUrl:
+#      defaultZone: http://localhost:8000/eureka/
 
-spring:
-  cloud:
-    config:
-      discovery:
-        serviceId: CONFIGSERVER
-        enabled: true
-  profiles:
-      active: prod
+#spring:
+#  cloud:
+#    config:
+#      discovery:
+#        serviceId: CONFIGSERVER
+#        enabled: true
+#  profiles:
+#      active: prod
 #ribbon:
 #  eureka:
 #    enable: true
