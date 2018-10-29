@@ -18,6 +18,14 @@ public class User implements Serializable{
 
     private String description;
 
+    public User() {
+    }
+
+    public User(String password, String username) {
+        this.password = password;
+        this.username = username;
+    }
+
     /**
      * @return id
      */

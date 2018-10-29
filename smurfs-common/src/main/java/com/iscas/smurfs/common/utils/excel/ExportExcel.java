@@ -126,6 +126,7 @@ public class ExportExcel {
 		}
 		// Field sorting
 		Collections.sort(annotationList, new Comparator<Object[]>() {
+			@Override
 			public int compare(Object[] o1, Object[] o2) {
 				return new Integer(((ExcelField)o1[0]).sort()).compareTo(
 						new Integer(((ExcelField)o2[0]).sort()));

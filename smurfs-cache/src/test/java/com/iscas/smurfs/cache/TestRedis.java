@@ -1,5 +1,6 @@
 package com.iscas.smurfs.cache;
 
+import com.iscas.smurfs.cache.utils.RedisHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,16 +29,21 @@ public class TestRedis {
     @Autowired
     private  RedisTemplate redisCacheTemplate;
 
+    @Autowired
+    RedisHelper redisHelper;
+
     @Test
     public void set(){
 //        myBean.getTemplate().opsForValue().set("test:set","testValue1");
-        System.out.println(stringRedisTemplate.opsForValue().get("test:set"));
+//        System.out.println(stringRedisTemplate.opsForValue().get("test:set"));
+//
+//        User user = new User(1,"username");
+//        redisCacheTemplate.opsForValue().set("user",user);
+//
+//        User getUser = (User) redisCacheTemplate.opsForValue().get("user");
+//        System.out.println(getUser.getUserName());
 
-        User user = new User(1,"username");
-        redisCacheTemplate.opsForValue().set("user",user);
-
-        User getUser = (User) redisCacheTemplate.opsForValue().get("user");
-        System.out.println(getUser.getUserName());
+        redisHelper.cleanRedis("*");
     }
 
 }

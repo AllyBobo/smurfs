@@ -1,9 +1,10 @@
 package com.iscas.smurfs.cache.utils;
 
-import com.iscas.smurfs.common.utils.SpringContextUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -12,13 +13,16 @@ import java.util.concurrent.TimeUnit;
  * @author: lee
  * @date: 2018-10-26
  */
-public class RedisUtils {
+@Component
+public class RedisHelper {
+    @Autowired
+    private  RedisTemplate redisTemplate;
 
 
-    private static Logger logger = LoggerFactory.getLogger(RedisUtils.class);
+    private static Logger logger = LoggerFactory.getLogger(RedisHelper.class);
 
-    private static RedisTemplate<String, Object> redisTemplate = SpringContextUtils.getBean(RedisTemplate.class);
-
+//    private static RedisTemplate<String, Object> redisTemplate;// = SpringContextUtils.getBean(RedisTemplate.class);
+//
 //    public void setRedisTemplate(RedisTemplate<String, Object> redisTemplate) {
 //        this.redisTemplate = redisTemplate;
 //    }
@@ -33,7 +37,7 @@ public class RedisUtils {
      * @param prefix
      * <br>
      */
-    public static void cleanRedis(String prefix) {
+    public void cleanRedis(String prefix) {
         logger.info("cleanRedis prefix: {}", prefix);
         try {
             if (null != prefix) {
@@ -60,7 +64,7 @@ public class RedisUtils {
      * @param key
      * <br>
      */
-    public static void cleanRedisByKey(String key) {
+    public void cleanRedisByKey(String key) {
         logger.info("cleanRedisByKey key: {}", key);
         try {
             if (null != key) {
@@ -86,7 +90,7 @@ public class RedisUtils {
      * @param minus
      * <br>
      */
-    public static void putCacheStr(String key, String data, Long minus) {
+    public void putCacheStr(String key, String data, Long minus) {
         logger.info("putCacheStr : {}, {}, {} minute", key, data, minus);
         try {
             ValueOperations<String, Object> opsValue = null;
@@ -111,7 +115,7 @@ public class RedisUtils {
      * @param key
      * @return <br>
      */
-    public static String getCacheStr(String key) {
+    public String getCacheStr(String key) {
         logger.info("getCacheStr : {}", key);
 
         String retStr = null;
@@ -142,7 +146,7 @@ public class RedisUtils {
      * @param minus
      * <br>
      */
-    public static void putCacheSimple(String key, Object data, Long minus) {
+    public void putCacheSimple(String key, Object data, Long minus) {
         logger.info("putCacheSimple : {}, {}, {} minute", key, data, minus);
         try {
             ValueOperations<String, Object> opsValue = null;
@@ -171,7 +175,7 @@ public class RedisUtils {
      * @param key
      * @return <br>
      */
-    public static Object getCacheSimple(String key) {
+    public Object getCacheSimple(String key) {
         logger.info("getCacheSimple : {}", key);
 
         Object object = null;
@@ -201,7 +205,7 @@ public class RedisUtils {
      * @param minus
      * <br>
      */
-    public static void putCacheList(String key, List<?> datas, Long minus) {
+    public void putCacheList(String key, List<?> datas, Long minus) {
         logger.info("putCacheList : {}, {}, {} minute", key, datas, minus);
         try {
             ListOperations<String, Object> opsList = null;
@@ -233,7 +237,7 @@ public class RedisUtils {
      * @param key
      * @return <br>
      */
-    public static List<Object> getCacheList(String key) {
+    public List<Object> getCacheList(String key) {
         logger.info("getCacheList : {}", key);
 
         List<Object> dataList = new ArrayList<Object>();
@@ -266,7 +270,7 @@ public class RedisUtils {
      * @param minus
      * <br>
      */
-    public static void putCacheSet(String key, Set<?> datas, Long minus) {
+    public void putCacheSet(String key, Set<?> datas, Long minus) {
         logger.info("putCacheList : {}, {}, {} minute", key, datas, minus);
         try {
             SetOperations<String, Object> opsSet = null;
@@ -295,7 +299,7 @@ public class RedisUtils {
      * @param key
      * @return <br>
      */
-    public static Set<Object> getCacheSet(String key) {
+    public Set<Object> getCacheSet(String key) {
         logger.info("getCacheSet : {}", key);
 
         Set<Object> dataSet = new HashSet<Object>();
@@ -325,7 +329,7 @@ public class RedisUtils {
      * @param minus
      * <br>
      */
-    public static void putCacheMap(String key, Map<Object, Object> datas, Long minus) {
+    public void putCacheMap(String key, Map<Object, Object> datas, Long minus) {
         logger.info("putCacheMap : {}, {}, {} minute", key, datas, minus);
         try {
             HashOperations<String, Object, Object> opsHash = null;
@@ -354,7 +358,7 @@ public class RedisUtils {
      * @param key
      * @return <br>
      */
-    public static Map<Object, Object> getCacheMap(String key) {
+    public Map<Object, Object> getCacheMap(String key) {
         logger.info("getCacheMap : {}", key);
 
         Map<Object, Object> dataMap = new HashMap<Object, Object>();
@@ -381,7 +385,7 @@ public class RedisUtils {
      * @date 2016年10月27日 下午1:54:58
      * @return <br>
      */
-    public static RedisTemplate<String, Object> getRedisTemplate() {
+    public RedisTemplate<String, Object> getRedisTemplate() {
         return redisTemplate;
     }
 }

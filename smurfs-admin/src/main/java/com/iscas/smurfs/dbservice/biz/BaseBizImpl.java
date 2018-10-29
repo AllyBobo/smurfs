@@ -21,34 +21,42 @@ public class BaseBizImpl<M extends MyMapper<T>,T> implements IBaseBiz<T>{
         this.mapper = mapper;
     }
 
+    @Override
     public int deleteByPrimaryKey(Integer id) {
         return mapper.deleteByPrimaryKey(id);
     }
 
+    @Override
     public int insert(T entity){
         return mapper.insert(entity);
     }
 
+    @Override
     public int insertSelective(T entity){
      return mapper.insertSelective(entity);
     }
 
+    @Override
     public T selectByPrimaryKey(Integer categoryId){
         return mapper.selectByPrimaryKey(categoryId);
     }
 
+    @Override
     public int updateByPrimaryKeySelective(T record){
         return mapper.updateByPrimaryKeySelective(record);
     }
 
+    @Override
     public int updateByPrimaryKey(T record){
         return mapper.updateByPrimaryKey(record);
     }
 
+    @Override
     public T selectOne(T entity) {
         return mapper.selectOne(entity);
     }
 
+    @Override
     public List<T> selectAll(){return  mapper.selectAll();}
 }
 

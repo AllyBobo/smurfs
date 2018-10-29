@@ -34,6 +34,7 @@ public class UserBizImpl extends BaseBizImpl<UserMapper, User> implements IUserB
         return super.mapper.selectOne(user);
     }
 
+    @Override
     @CachePut
     public int insert(User user){
         String password = new BCryptPasswordEncoder(Constant.PW_ENCORDER_SALT).encode(user.getPassword());

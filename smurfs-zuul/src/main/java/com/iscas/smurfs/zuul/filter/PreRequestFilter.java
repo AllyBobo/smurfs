@@ -72,7 +72,9 @@ public class PreRequestFilter extends ZuulFilter {
         }
         //判断当前要访问的资源是否有权限信息
         List<Permission> permissions = getPermissions(requestUri, method);
-        if (permissions == null) return null;
+        if (permissions == null) {
+            return null;
+        }
         //判断是否有用户信息
         UserJwtDto userJwtDto = null;
         try{
@@ -102,7 +104,9 @@ public class PreRequestFilter extends ZuulFilter {
 
         for(Permission permission : permissions){
             isPermission = adminFeign.checkUserAndPermission(userJwtDto.getUserId(),permission.getId());
-            if (isPermission.equals(true)) break;
+            if (isPermission.equals(true)) {
+                break;
+            }
         }
         return isPermission;
     }
@@ -133,9 +137,13 @@ public class PreRequestFilter extends ZuulFilter {
         if (StringUtils.isBlank(token)) {
             token = request.getParameter(Constant.TOKEN_HEADER);
         }
-        if(token == null) return null;
+        if(token == null) {
+            return null;
+        }
         //redis里的缓存被清除了，已注销
-        if (redisTemplate.opsForValue().get(token)==null) return null;
+        if (redisTemplate.opsForValue().get(token)==null) {
+            return null;
+        }
         ctx.addZuulRequestHeader(Constant.TOKEN_HEADER,token);
         // 从token中计算出来user
         return userJwtService.getInfoFromToken(token);

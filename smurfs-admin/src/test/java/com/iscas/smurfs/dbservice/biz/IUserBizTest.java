@@ -8,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.Assert;
 
+import java.util.stream.IntStream;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class IUserBizTest {
@@ -16,10 +18,14 @@ public class IUserBizTest {
 
     @Test
     public void insert(){
-        User user = new User();
-        user.setUsername("test");
-        user.setPassword("123");
+//        User user = new User();
+//        user.setUsername("test");
+//        user.setPassword("123");
+//
+//        Assert.notNull(userBiz.insert(user),"insert succ");
 
-        Assert.notNull(userBiz.insert(user),"insert succ");
+//        IntStream.range(1,25).forEach(i->{userBiz.insert(new User("test"+i,"123"));
+//            System.out.println(i);});
+        IntStream.range(1,25).forEach(System.out::println);
     }
 }

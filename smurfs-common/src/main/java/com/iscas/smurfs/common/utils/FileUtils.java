@@ -609,8 +609,9 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
      */
     public static String getContentType(String returnFileName) {
         String contentType = "application/octet-stream";
-        if (returnFileName.lastIndexOf(".") < 0)
+        if (returnFileName.lastIndexOf(".") < 0) {
             return contentType;
+        }
         returnFileName = returnFileName.toLowerCase();
         returnFileName = returnFileName.substring(returnFileName.lastIndexOf(".") + 1);
         if (returnFileName.equals("html") || returnFileName.equals("htm") || returnFileName.equals("shtml")) {

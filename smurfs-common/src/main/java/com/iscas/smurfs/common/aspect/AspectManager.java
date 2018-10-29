@@ -10,6 +10,7 @@ import java.lang.reflect.Method;
  */
 public abstract class AspectManager implements AspectApi{
 
+    @Override
     public abstract Object doHandlerAspect(ProceedingJoinPoint pjp, Method method)throws Throwable;
 
 }
