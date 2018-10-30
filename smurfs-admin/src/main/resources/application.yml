@@ -44,7 +44,6 @@ mybatis:
   type-aliases-package: com.iscas.smurfs.core.entity  # 注意：对应实体类的路径
   configuration:
       mapUnderscoreToCamelCase: true
-
 #pagehelper分页插件
 pagehelper:
     helperDialect: mysql

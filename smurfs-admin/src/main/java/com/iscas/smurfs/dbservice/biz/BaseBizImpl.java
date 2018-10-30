@@ -22,7 +22,7 @@ public class BaseBizImpl<M extends MyMapper<T>,T> implements IBaseBiz<T>{
     }
 
     @Override
-    public int deleteByPrimaryKey(Integer id) {
+    public int deleteByPrimaryKey(Object id) {
         return mapper.deleteByPrimaryKey(id);
     }
 
@@ -58,5 +58,10 @@ public class BaseBizImpl<M extends MyMapper<T>,T> implements IBaseBiz<T>{
 
     @Override
     public List<T> selectAll(){return  mapper.selectAll();}
+
+    @Override
+    public List<T> selectByExample(Object example) {
+        return mapper.selectByExample(example);
+    }
 }
 

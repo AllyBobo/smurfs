@@ -1,5 +1,6 @@
 package com.iscas.smurfs.dbservice.biz;
 
+import com.iscas.smurfs.common.utils.JsonUtils;
 import com.iscas.smurfs.core.admin.entity.po.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,8 +25,17 @@ public class IUserBizTest {
 //
 //        Assert.notNull(userBiz.insert(user),"insert succ");
 
-//        IntStream.range(1,25).forEach(i->{userBiz.insert(new User("test"+i,"123"));
-//            System.out.println(i);});
-        IntStream.range(1,25).forEach(System.out::println);
+        IntStream.range(1,25).forEach(i->{userBiz.insert(new User("123","test"+i));
+            System.out.println(i);});
+        //IntStream.range(1,25).forEach(System.out::println);
+    }
+
+    @Test
+    public void query(){
+        Integer pageNo = 17;
+        Integer pageSize = 3;
+
+        //System.out.println(JsonUtils.toJson(userBiz.queryByPage(pageNo,pageSize,null)));
+        userBiz.queryByPage(pageNo,pageSize,null).getList().forEach(i-> System.out.println(JsonUtils.toJson(i)));
     }
 }

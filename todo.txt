@@ -18,7 +18,6 @@ DBAuthClientService中有自动注册服务，这样做的目的？
 
 springcloud集中配置问题，mysql和redis修改为集中配置
 
-RedisCacheAutoConfiguration中 配置文件的其他属性怎么在程序中配置
 
 basehandler jwt续签 注销 异常处理global mono
 

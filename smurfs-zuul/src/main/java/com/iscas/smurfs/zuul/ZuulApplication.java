@@ -1,13 +1,12 @@
 package com.iscas.smurfs.zuul;
 
-//import com.iscas.smurfs.zuul.filter.PreRequestFilter;
+//import com.iscas.smurfs.zuul.filter.AuthFilter;
 import com.iscas.smurfs.cache.EnableSmurfsCache;
 import com.iscas.smurfs.cert.EnableSmurfsCert;
 import com.iscas.smurfs.common.EnableSmurfsCommon;
-import com.iscas.smurfs.zuul.filter.PreRequestFilter;
+import com.iscas.smurfs.zuul.filter.AuthFilter;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
@@ -28,8 +27,8 @@ public class ZuulApplication {
     }
 
     @Bean
-    public PreRequestFilter preRequestFilter(){
-        return new PreRequestFilter();
+    public AuthFilter authFilter(){
+        return new AuthFilter();
     }
 }
 

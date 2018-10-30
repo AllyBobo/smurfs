@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Slf4j
-public class PreRequestFilter extends ZuulFilter {
+public class AuthFilter extends ZuulFilter {
 
     @Autowired
     @Lazy
