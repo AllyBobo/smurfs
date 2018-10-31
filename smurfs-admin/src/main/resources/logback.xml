@@ -32,8 +32,6 @@
     <logger name="java.sql.ResultSet" level="debug" />
     <root level="info">
         <appender-ref ref="console" />
-        <appender-ref ref="cn.iautos.manager" />
-        <appender-ref ref="com.ibatis" />
-        <appender-ref ref="rollingFile" />
+        <!--<appender-ref ref="rollingFile" />-->
     </root>
 </configuration>

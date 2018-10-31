@@ -35,6 +35,7 @@ public class PermissionBizImpl extends BaseBizImpl<PermissionMapper,Permission> 
     @Cacheable
     @Override
     public List<Permission> getAllPermissions() {
+        super.mapper.selectAll();
         return super.mapper.selectAll();
     }
 
