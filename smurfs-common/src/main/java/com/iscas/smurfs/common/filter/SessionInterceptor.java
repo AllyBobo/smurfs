@@ -29,23 +29,26 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
     UserConfiguration userConfiguration;
     @Autowired
     KeyConfiguration keyConfiguration;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        HandlerMethod handlerMethod = (HandlerMethod)handler;
-        log.info("handlerMethod============"+handlerMethod.getMethod());
-        //判断客户端是普通用户而不是服务
-        if(request.getHeader(Constant.CLIENT_TAG)==null) {
-            NeedToken needToken = handlerMethod.getBeanType().getAnnotation(NeedToken.class);
-            if (needToken!=null) {
-                String token = request.getHeader(userConfiguration.getTokenHeader());
-                try {
-                    UserJwtDto userJwtDto = JwtHelper.getInfoFromToken(token, keyConfiguration.getUserPubKey());
-                    CustomSession.setUserID(userJwtDto.getUserId().toString());
-                    CustomSession.setName(userJwtDto.getName());
-                    CustomSession.setUsername(userJwtDto.getUsername());
-                    CustomSession.setToken(token);
-                } catch (Exception e) {
-                    e.printStackTrace();
+        if (handler instanceof HandlerMethod) {
+            HandlerMethod handlerMethod = (HandlerMethod) handler;
+            log.info("handlerMethod============" + handlerMethod.getMethod());
+            //判断客户端是普通用户而不是服务
+            if (request.getHeader(Constant.CLIENT_TAG) == null) {
+                NeedToken needToken = handlerMethod.getBeanType().getAnnotation(NeedToken.class);
+                if (needToken != null) {
+                    String token = request.getHeader(userConfiguration.getTokenHeader());
+                    try {
+                        UserJwtDto userJwtDto = JwtHelper.getInfoFromToken(token, keyConfiguration.getUserPubKey());
+                        CustomSession.setUserID(userJwtDto.getUserId().toString());
+                        CustomSession.setName(userJwtDto.getName());
+                        CustomSession.setUsername(userJwtDto.getUsername());
+                        CustomSession.setToken(token);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

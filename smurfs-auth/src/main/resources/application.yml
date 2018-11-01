@@ -1,6 +1,7 @@
 server:
   port: 8993
-
+  servlet:
+    context-path: /auth
 spring:
     application:
         name: AUTHSERVICE

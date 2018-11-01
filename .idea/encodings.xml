@@ -9,12 +9,9 @@
     <file url="file://$PROJECT_DIR$/smurfs-config" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/smurfs-core" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/smurfs-eureka" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/smurfs-logservice" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/smurfs-oauth2" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/smurfs-opera1service" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/smurfs-opera2service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/smurfs-parent" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/smurfs-test" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/smurfs-zuul" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/smurfs-zuul/src/main/resources/application.yml" charset="GBK" />
   </component>
 </project>

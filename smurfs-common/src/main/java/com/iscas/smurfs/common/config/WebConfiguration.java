@@ -18,6 +18,10 @@ public class WebConfiguration implements WebMvcConfigurer {
     private SessionInterceptor sessionInterceptor;
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(sessionInterceptor).addPathPatterns("/**").excludePathPatterns("/api/getToken","/success");
+        registry.addInterceptor(sessionInterceptor)
+                .addPathPatterns("/smurfs/**")
+                .addPathPatterns("/auth/**")
+                .addPathPatterns("/admin/**")
+                .excludePathPatterns("/api/getToken","/success");
     }
 }

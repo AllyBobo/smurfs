@@ -58,5 +58,5 @@ zuul:
     api-a:
       strip-prefix: true
     api-c:
-      path: /auth/**
+      path: /smurfs/**
       serviceId: AUTHSERVICE

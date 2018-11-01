@@ -1,6 +1,7 @@
 server:
   port: 8999
-
+  servlet:
+    context-path: /admin
 spring:
     application:
         name: DBSERVICE

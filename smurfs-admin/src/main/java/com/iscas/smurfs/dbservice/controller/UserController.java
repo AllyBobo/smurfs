@@ -5,11 +5,10 @@ import com.iscas.smurfs.dbservice.biz.IPermissionBiz;
 import com.iscas.smurfs.dbservice.biz.IUserBiz;
 import com.iscas.smurfs.core.admin.entity.po.User;
 import com.iscas.smurfs.dbservice.biz.IUserPermissionBiz;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,7 +20,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("db")
+@Api(description="用户管理模块")
 public class UserController {
 
     @Autowired
@@ -31,25 +30,26 @@ public class UserController {
     @Autowired
     IPermissionBiz permissionBiz;
 
-    @RequestMapping("user/{username}")
+    @ApiOperation(value="用户名", notes="通过用户名获取用户信息",produces = "application/json")
+    @GetMapping("user/{username}")
     @ResponseBody
     public User getUserByUsername(@PathVariable("username") String username) {
         return userBiz.getUserByUsername(username);
     }
 
-    @RequestMapping("checkUserAndPermission/{userid}/{permissionid}")
+    @GetMapping("checkUserAndPermission/{userid}/{permissionid}")
     @ResponseBody
     public Boolean checkUserAndPermission(@PathVariable("userid") Integer userid,@PathVariable("permissionid") Long permissionid){
         return  userPermissionBiz.checkUserAndPermission(userid,permissionid);
     }
 
-    @RequestMapping("checkUrlPermission/{url}/{method}")
+    @GetMapping("checkUrlPermission/{url}/{method}")
     @ResponseBody
     public Boolean checkUrlPermission(@PathVariable("url")String url,@PathVariable("method")String method){
         return permissionBiz.checkUrlPermission(url,method);
     }
 
-    @RequestMapping("getAllPermissions")
+    @GetMapping("getAllPermissions")
     @ResponseBody
     public List<Permission> getAllPermissions(){
         return  permissionBiz.getAllPermissions();
