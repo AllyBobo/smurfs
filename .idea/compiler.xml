@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="smurfs-admin" />
+        <module name="smurfs-admin2" />
         <module name="smurfs-auth" />
         <module name="smurfs-cache" />
         <module name="smurfs-cert" />
@@ -20,6 +21,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="smurfs-admin" target="1.8" />
+      <module name="smurfs-admin2" target="1.8" />
       <module name="smurfs-auth" target="1.8" />
       <module name="smurfs-cache" target="1.8" />
       <module name="smurfs-cert" target="1.8" />

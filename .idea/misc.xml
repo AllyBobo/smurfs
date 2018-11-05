@@ -18,6 +18,8 @@
         <option value="$PROJECT_DIR$/smurfs-cache/pom.xml" />
         <option value="$PROJECT_DIR$/smurfs-cert/pom.xml" />
         <option value="$PROJECT_DIR$/smurfs-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/admin2/pom.xml" />
+        <option value="$PROJECT_DIR$/smurfs-admin2/pom.xml" />
       </list>
     </option>
   </component>
