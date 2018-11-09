@@ -55,7 +55,7 @@ public class SwaggerConfiguration {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("包含媒体、咨询、搜索引擎关键字、广告等类型接口的服务")//大标题
+                .title("标题是啥")//大标题
                 .version("1.0")//版本
                 .build();
     }
