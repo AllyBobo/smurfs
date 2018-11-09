@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/smurfs-admin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/smurfs-admin2" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/smurfs-admin2/src/main/java/test/com/iscas/smurfs/admin2/service/impl/TablesServiceImplTest.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/smurfs-auth" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/smurfs-cache" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/smurfs-cert" charset="UTF-8" />

@@ -1,5 +1,7 @@
 package com.iscas.smurfs.core.admin.entity.po;
 
+import com.iscas.smurfs.common.utils.excel.ExcelField;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,6 +45,7 @@ public class User implements Serializable{
     /**
      * @return password
      */
+    @ExcelField(title="密码", align=2, sort=25)
     public String getPassword() {
         return password;
     }
@@ -57,6 +60,7 @@ public class User implements Serializable{
     /**
      * @return username
      */
+    @ExcelField(title="姓名", align=2, sort=20)
     public String getUsername() {
         return username;
     }
@@ -80,5 +84,10 @@ public class User implements Serializable{
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString(){
+        return username;
     }
 }
