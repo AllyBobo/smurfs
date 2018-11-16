@@ -4,6 +4,7 @@ import com.alibaba.druid.pool.DruidDataSourceFactory;
 import com.google.common.collect.Lists;
 import com.iscas.smurfs.admin2.command.SysMysqlColumns;
 import com.iscas.smurfs.admin2.dao.system.CreateMysqlTablesMapper;
+import com.iscas.smurfs.admin2.dynamic.DynamicDataSourceContextHolder;
 import com.iscas.smurfs.admin2.dynamic.DynamicDataSourceRegisterUtil;
 import com.iscas.smurfs.admin2.dynamic.EnvironmentConfig;
 import com.iscas.smurfs.common.entity.dto.ResponseData;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +36,7 @@ public class TableMetaController {
     @ApiOperation(value = "无", notes = "获取表结构",produces = "application/json")
     @GetMapping(value = "/structure")
     public ResponseData tableStructure(){
+        DynamicDataSourceContextHolder.setDataSourceType("stg");
         List<String> list = createMysqlTablesMapper.findTableByDbName(dbName);
         List<Map<String,List<SysMysqlColumns>>> mapList = Lists.newArrayList();
         list.forEach(i->{
@@ -51,8 +54,8 @@ public class TableMetaController {
             return ResponseData.fail("没有数据！");
         }
 //参数校验
-        String codes = " ";
-        String names = " ";
+        String codes = "";
+        String names = "";
 //生成prop
         Properties properties=new Properties();
         for (EnvironmentConfig e:environmentConfigs){
@@ -66,15 +69,18 @@ public class TableMetaController {
             }
             codes=codes+","+e.getCode().trim();
             names=names+","+e.getName().trim();
-            properties.setProperty(e.getCode().trim()+ DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_SPLIT+DynamicDataSourceRegisterUtil.DRUID_DATASOURCE_PARAM_PREF+DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_PRPO_KEY_DRIVER_CLASS_NAME,e.getDriverClassName());
-            properties.setProperty(e.getCode().trim()+DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_SPLIT+DynamicDataSourceRegisterUtil.DRUID_DATASOURCE_PARAM_PREF+ DruidDataSourceFactory.PROP_URL,e.getUrl());
-            properties.setProperty(e.getCode().trim()+DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_SPLIT+DynamicDataSourceRegisterUtil.DRUID_DATASOURCE_PARAM_PREF+DruidDataSourceFactory.PROP_USERNAME,e.getUsername());
-            properties.setProperty(e.getCode().trim()+DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_SPLIT+DynamicDataSourceRegisterUtil.DRUID_DATASOURCE_PARAM_PREF+DruidDataSourceFactory.PROP_PASSWORD,e.getPassword());
+            properties.setProperty(e.getCode().trim()+ DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_SPLIT+DynamicDataSourceRegisterUtil.DRUID_DATASOURCE_PARAM_PREF+DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_SPLIT+DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_PRPO_KEY_DRIVER_CLASS_NAME,e.getDriverClassName());
+            properties.setProperty(e.getCode().trim()+DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_SPLIT+DynamicDataSourceRegisterUtil.DRUID_DATASOURCE_PARAM_PREF+DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_SPLIT+ DruidDataSourceFactory.PROP_URL,e.getUrl());
+            properties.setProperty(e.getCode().trim()+DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_SPLIT+DynamicDataSourceRegisterUtil.DRUID_DATASOURCE_PARAM_PREF+DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_SPLIT+DruidDataSourceFactory.PROP_USERNAME,e.getUsername());
+            properties.setProperty(e.getCode().trim()+DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_SPLIT+DynamicDataSourceRegisterUtil.DRUID_DATASOURCE_PARAM_PREF+DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_SPLIT+DruidDataSourceFactory.PROP_PASSWORD,e.getPassword());
+            DynamicDataSourceRegisterUtil.addCustomDataSource(e);
         }
         codes=codes.substring(1);
         names=names.substring(1);
-        properties.setProperty(DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_PREF+"keys",codes);
-        properties.setProperty(DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_PREF+"names",names);
+        properties.setProperty(DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_PREF+DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_SPLIT+"keys",codes);
+        properties.setProperty(DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_PREF+DynamicDataSourceRegisterUtil.DATASOURCE_PARAM_SPLIT+"names",names);
+
+
         DynamicDataSourceRegisterUtil.refreshDataSoureProperties(properties);
         return ResponseData.ok("succ");
     }

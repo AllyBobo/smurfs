@@ -16,7 +16,8 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Slf4j
 public class MultipleDataSourceAspectAdvice implements Ordered {
-    @Before("execution(* com..mapper..*.*(..))")
+    @Before("execution(* com..dao..*.*(..))")
+    //@Before("execution(* *.*(..))")
     public void changeDataSource(JoinPoint point) throws Throwable {
         String environmentCode = "dev";// SessionUtil.getSessionAttr(SessionUtil.ENVIRONMENT_CODE,"dev").toString();
         log.info("Use DataSource : "+ environmentCode+"-"+ point.getSignature());
@@ -28,7 +29,7 @@ public class MultipleDataSourceAspectAdvice implements Ordered {
         //方法执行完毕之后，销毁当前数据源信息，进行垃圾回收。
         DynamicDataSourceContextHolder.clearDataSourceType();
     }
-    @After("execution(* com..mapper..*.*(..))")
+    @After("execution(* com..dao..*.*(..))")
     public void clearDataSource(JoinPoint point) {
         //方法执行完毕之后，销毁当前数据源信息，进行垃圾回收。
         DynamicDataSourceContextHolder.clearDataSourceType();

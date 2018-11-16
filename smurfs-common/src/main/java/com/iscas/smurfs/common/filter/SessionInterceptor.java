@@ -40,6 +40,7 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
                 NeedToken needToken = handlerMethod.getBeanType().getAnnotation(NeedToken.class);
                 if (needToken != null) {
                     String token = request.getHeader(userConfiguration.getTokenHeader());
+
                     try {
                         UserJwtDto userJwtDto = JwtHelper.getInfoFromToken(token, keyConfiguration.getUserPubKey());
                         CustomSession.setUserID(userJwtDto.getUserId().toString());

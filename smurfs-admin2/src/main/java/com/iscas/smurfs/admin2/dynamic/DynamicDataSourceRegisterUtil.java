@@ -16,6 +16,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.env.PropertiesPropertySource;
 import org.springframework.core.env.PropertySource;
 import org.springframework.core.env.StandardEnvironment;
+import org.springframework.util.ResourceUtils;
 
 import javax.sql.DataSource;
 import java.io.*;
@@ -25,6 +26,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -37,16 +39,17 @@ import static org.bouncycastle.asn1.x509.Target.targetName;
  */
 @Slf4j
 public class DynamicDataSourceRegisterUtil {
-    public final static String DATASOURCE_PARAM_PREF ="spring.datasource.";
+    public final static String DATASOURCE_PARAM_PREF ="spring.datasource";
     public final static String DATASOURCE_PARAM_PRPO_KEY_DRIVER_CLASS_NAME ="driver-class-name";
-    public final static String DRUID_DATASOURCE_PARAM_PREF ="spring.datasource.druid.";
-    public final static String DATASOURCE_PARAM_TYPE ="druid.";
+    public final static String DRUID_DATASOURCE_PARAM_PREF ="spring.datasource";
+   // public final static String DATASOURCE_PARAM_TYPE ="druid-";
     public final static String DATASOURCE_PARAM_SPLIT =".";
 
     public final static  String DEFAULT_TARGET_DATA_SOURCE ="defaultTargetDataSource";
     public final static  String TARGET_DATA_SOURCES  ="targetDataSources";
     public final static  String  DATA_SOURCE  ="dataSource";
     private static final ConversionService conversionService = new DefaultConversionService();
+    //private static final String JDBC_FILE_NAME="application.properties";
     private static final String JDBC_FILE_NAME="jdbc.properties";
     private static final String CUSTOM_DATA_SOURCES_MAP_NAME="customDataSourcesMap";
 
@@ -104,13 +107,14 @@ public class DynamicDataSourceRegisterUtil {
      */
     public synchronized static void refreshDataSoureProperties(Properties properties) throws IOException {
         //将属性持久化到配置文件
-        OutputStream out=new FileOutputStream(URLEncoder.encode(DynamicDataSourceRegisterUtil.class.getClassLoader().getResource(JDBC_FILE_NAME).getPath(),"utf-8"));
+        OutputStream out=new FileOutputStream(ResourceUtils.getFile("classpath:jdbc.properties"));
         properties.store(out,"更新数据库");
         out.flush();
         out.close();
         //将属性热加载到环境中去
         Environment env =EnvironmentUtils.getEnvironment();
         PropertySource<?> source = new PropertiesPropertySource(CUSTOM_DATA_SOURCES_MAP_NAME, properties);
+
         ((StandardEnvironment) env).getPropertySources().addLast(source);
         refreshDataSource(env);
     }
@@ -119,8 +123,10 @@ public class DynamicDataSourceRegisterUtil {
      */
     private static void initDefaultDataSource(Environment env) {
         // 读取主数据源
-        RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(env, DATASOURCE_PARAM_PREF);
-        Map<String,Object> dsMap = propertyResolver.getSubProperties(DATASOURCE_PARAM_TYPE);
+//        RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(env, DATASOURCE_PARAM_PREF);
+//        Map<String,Object> dsMap = propertyResolver.getSubProperties(DATASOURCE_PARAM_TYPE);
+        Binder binder = Binder.get(env);
+        Map<String,Object> dsMap = binder.bind(DRUID_DATASOURCE_PARAM_PREF,Bindable.mapOf(String.class,Object.class)).get();
         defaultDataSource = buildDataSource(dsMap);
         dataBinder(defaultDataSource,env);
     }
@@ -147,13 +153,29 @@ public class DynamicDataSourceRegisterUtil {
         Properties properties = new Properties();
         InputStream in =null;
         try {
-            in = new FileInputStream(URLEncoder.encode(DynamicDataSourceRegisterUtil.class.getClassLoader().getResource(JDBC_FILE_NAME).getPath(), "utf-8"));
+            //in = new FileInputStream(URLEncoder.encode(DynamicDataSourceRegisterUtil.class.getClassLoader().getResource(JDBC_FILE_NAME).getPath(), "utf-8"));
+            in = new FileInputStream(ResourceUtils.getFile("classpath:jdbc.properties"));
             properties.load(in);
             PropertySource<?> source = new PropertiesPropertySource(CUSTOM_DATA_SOURCES_MAP_NAME, properties);
             ((StandardEnvironment) env).getPropertySources().addLast(source);
         }finally {
             in.close();
         }
+    }
+
+    public static void addCustomDataSource(EnvironmentConfig environmentConfig){
+
+        Map<String,Object> dsMap = new HashMap<>();
+        dsMap.put("password",environmentConfig.getPassword());
+        dsMap.put("username",environmentConfig.getUsername());
+        dsMap.put("url",environmentConfig.getUrl());
+        dsMap.put("driver-class-name",environmentConfig.getDriverClassName());
+        dsMap.put("code",environmentConfig.getCode());
+        dsMap.put("name",environmentConfig.getName());
+        DataSource dataSource= buildDataSource(dsMap);
+        dataBinder(dataSource,EnvironmentUtils.getEnvironment());
+        customDataSources.put(environmentConfig.getCode(),dataSource);
+
     }
     /**
      * 初始化更多数据源
@@ -163,16 +185,18 @@ public class DynamicDataSourceRegisterUtil {
 
 
         //初始化之前要先将老的数据源关闭
-        closeOldCustomDataSources();
+      //  closeOldCustomDataSources();
         // 读取配置文件获取更多数据源，也可以通过defaultDataSource读取数据库获取更多数据源
         Binder binder = Binder.get(env);
-        String dsPrefixs = binder.bind(DATASOURCE_PARAM_PREF,Bindable.of(String.class)).get();
+        List<String> dsPrefixs = binder.bind(DATASOURCE_PARAM_PREF+".keys",Bindable.listOf(String.class)).get();
         if(dsPrefixs==null){
             return;
         }
-        for (String dsPrefix : dsPrefixs.split(",")) {// 多个数据源
-            RelaxedPropertyResolver propertys = new RelaxedPropertyResolver(env, dsPrefix.trim()+DATASOURCE_PARAM_SPLIT+DATASOURCE_PARAM_PREF);
-            Map<String,Object> dsMap = propertys.getSubProperties(DATASOURCE_PARAM_TYPE);
+        for (String dsPrefix : dsPrefixs) {// 多个数据源
+
+//            RelaxedPropertyResolver propertys = new RelaxedPropertyResolver(env, dsPrefix.trim()+DATASOURCE_PARAM_SPLIT+DATASOURCE_PARAM_PREF);
+//            Map<String,Object> dsMap = propertys.getSubProperties(DATASOURCE_PARAM_TYPE);
+            Map<String,Object> dsMap = binder.bind(dsPrefix.trim()+DATASOURCE_PARAM_SPLIT+DRUID_DATASOURCE_PARAM_PREF,Bindable.mapOf(String.class,Object.class)).get();
             DataSource dataSource= buildDataSource(dsMap);
             dataBinder(dataSource,env);
             customDataSources.put(dsPrefix, dataSource);
@@ -261,15 +285,17 @@ public class DynamicDataSourceRegisterUtil {
      * @param env
      */
     private static void dataBinder(DataSource dataSource, Environment env) {
-        Binder binder =
-        RelaxedDataBinder dataBinder = new RelaxedDataBinder(dataSource);
-        dataBinder.setConversionService(conversionService);
-        dataBinder.setIgnoreNestedProperties(false);//false
-        dataBinder.setIgnoreInvalidFields(false);//false
-        dataBinder.setIgnoreUnknownFields(true);//true
+        //Binder binder =
+//        RelaxedDataBinder dataBinder = new RelaxedDataBinder(dataSource);
+//        dataBinder.setConversionService(conversionService);
+//        dataBinder.setIgnoreNestedProperties(false);//false
+//        dataBinder.setIgnoreInvalidFields(false);//false
+//        dataBinder.setIgnoreUnknownFields(true);//true
         if (dataSourcePropertyValues == null) {
+            Binder binder = Binder.get(env);
            // Map<String, Object> rpr = new RelaxedPropertyResolver(env, DATASOURCE_PARAM_PREF).getSubProperties(DATASOURCE_PARAM_TYPE);
-            Map<String, Object> rpr =  binder.bind(DRUID_DATASOURCE_PARAM_PREF,Bindable.of(Map.class)).get();
+
+            Map<String, Object> rpr =  binder.bind(DRUID_DATASOURCE_PARAM_PREF,Bindable.mapOf(String.class,Object.class)).get();
             Map<String, Object> values = new HashMap<>(rpr);
             // 排除已经设置的属性
             values.remove("type");
@@ -279,7 +305,7 @@ public class DynamicDataSourceRegisterUtil {
             values.remove("password");
             dataSourcePropertyValues = new MutablePropertyValues(values);
         }
-        dataBinder.bind(dataSourcePropertyValues);
+//        dataBinder.bind(dataSourcePropertyValues);
     }
 
 }
